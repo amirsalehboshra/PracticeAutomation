@@ -104,7 +104,7 @@ namespace PracticeAutomation.Pages
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
             //open file and returns as Stream
 
-            var stream = File.Open(@"D:\Projects\PracticeAutomation\PracticeAutomation\Files\TestData\RegistrationData.xlsx", FileMode.Open, FileAccess.Read);
+            var stream = File.Open(@"..\..\..\Files\TestData\RegistrationData.xlsx", FileMode.Open, FileAccess.Read);
             using (var excelReader = ExcelReaderFactory.CreateReader(stream))
             {
                 DataSet result = excelReader.AsDataSet(new ExcelDataSetConfiguration()

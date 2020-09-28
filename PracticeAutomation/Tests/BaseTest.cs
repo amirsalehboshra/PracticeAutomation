@@ -20,8 +20,25 @@ using AventStack.ExtentReports.Reporter;
 
 namespace Practice.Test
 {
-    class MainSetup:Common
+    class BaseTest
     {
+        protected HomePage _homePage;
+        protected _loginPage _loginPage;
+        protected AccountCreationPage _accountCreationPage;
+        protected MyAccountPage _myAccountPage;
+        protected IWebDriver driver;
+
+        //[SetUp]
+        //public void IntializePages()
+        //{
+
+
+        //    _homePage = new HomePage(driver);
+        //    _loginPage = new LoginPage(driver);
+        //    _accountCreationPage = new AccountCreationPage(driver);
+        //    _myAccountPage = new MyAccountPage(driver);
+
+        //}
 
         //public AventStack.ExtentReports.ExtentReports Reporter;
         //public ExtentTest test;
@@ -31,8 +48,6 @@ namespace Practice.Test
 
         public string Server { get; set; }
 
-        public TestContext TestContext{ get; set; }
-        public IWebDriver driver;
 
 
 

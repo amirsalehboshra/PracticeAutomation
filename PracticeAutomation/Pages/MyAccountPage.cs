@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -11,9 +12,11 @@ namespace PracticeAutomation.Pages
         #region Properties
         private IWebDriver driver;
 
+        //[FindsBy(How = How.XPath, Using = "//*[contains(@title, 'View my customer account')]/span")]
+        //private IWebElement headerUsernameLnk;
 
-        By _headerUsernameLnk = By.CssSelector("a[title='View my customer account'] > span");
-        By _logoutLnk = By.CssSelector("a[title='Log me out']");
+        By _headerUsernameLnk = By.XPath("//*[contains(@title, 'View my customer account')]/span");
+        By _logoutLnk = By.XPath("//*[@id='header']/div[2]/div/div/nav/div[2]/a");
         #endregion
 
         #region Constructor 

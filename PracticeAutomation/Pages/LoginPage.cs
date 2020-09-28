@@ -6,7 +6,7 @@ using System.Text;
 
 namespace PracticeAutomation.Pages
 {
-    class LoginPage
+    class _loginPage
     {
         #region Properties
         private IWebDriver driver;
@@ -18,7 +18,7 @@ namespace PracticeAutomation.Pages
         #endregion
 
         #region Constuctor
-        public LoginPage(IWebDriver driver)
+        public _loginPage(IWebDriver driver)
         {
             this.driver = driver;
         }
@@ -27,15 +27,18 @@ namespace PracticeAutomation.Pages
         #region Methods
         public void EnterEmailAndStartCreatingAccount()
         {
-            driver.FindElement(EmailCreateTxtBox).SendKeys("amir+" + Helper.GetRandomNumber(0,1000) + Helper.GetRandomNumber(0, 1000) + "@gmail.com");
+            driver.FindElement(EmailCreateTxtBox).SendKeys(Helper.GetRandomMail());
             driver.FindElement(CreateAccountBtn).Click();
         
         }
 
         public void Login() 
         {
-            driver.FindElement(EmailTxtBox).SendKeys("amir+Login@gmail.com");
-            driver.FindElement(PasswordTxtBox).SendKeys("p@ssw0rd");
+            string email = Helper.GetConfigValueByKey("Email");
+            string password = Helper.GetConfigValueByKey("Password");
+
+            driver.FindElement(EmailTxtBox).SendKeys(email);
+            driver.FindElement(PasswordTxtBox).SendKeys(password);
             driver.FindElement(LoginBtn).Click();
         
         }
