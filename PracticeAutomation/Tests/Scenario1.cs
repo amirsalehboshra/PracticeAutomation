@@ -1,5 +1,7 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using AventStack.ExtentReports;
+using AventStack.ExtentReports.Gherkin.Model;
+using NUnit.Framework;
+using OpenQA.Selenium.Support.PageObjects;
 using Practice.Test;
 using PracticeAutomation.Pages;
 using System;
@@ -11,7 +13,7 @@ namespace PracticeAutomation.Tests
     class Scenario1 : BaseTest
     {
         public TestContext TestContext { get; set; }
-
+       
 
         [SetUp]
         public void IntializePages()
@@ -31,7 +33,8 @@ namespace PracticeAutomation.Tests
             #region Arrange
             bool MyAccountPageIsOpened = false;
             bool ProperUsernameIsShownInTheHeader = false;
-            bool LogOutActionIsAvailable = true;
+            bool LogOutActionIsAvailable = false;
+
             #endregion
 
             #region Act
@@ -41,14 +44,20 @@ namespace PracticeAutomation.Tests
             MyAccountPageIsOpened = _myAccountPage.IsMyAccountPageOpened();
             ProperUsernameIsShownInTheHeader = _myAccountPage.IsProperUsernameShownInTheHeader(Username);
             LogOutActionIsAvailable = _myAccountPage.IsLogOutActionAvailable();
+           if (MyAccountPageIsOpened)
+                extentTest.Log(Status.Pass, "MyAccountPageIsOpened");
+            if (ProperUsernameIsShownInTheHeader)
+                extentTest.Log(Status.Pass, "ProperUsernameIsShownInTheHeader");
+            if (LogOutActionIsAvailable)
+                extentTest.Log(Status.Pass, "LogOutActionIsAvailable");
             #endregion
 
             #region Assert
             Assert.Multiple(() =>
             {
-                Assert.IsTrue(MyAccountPageIsOpened);
-                Assert.IsTrue(ProperUsernameIsShownInTheHeader);
-                Assert.IsTrue(LogOutActionIsAvailable);
+                Assert.IsTrue(MyAccountPageIsOpened, "MyAccountPageIsOpened");
+                Assert.IsTrue(ProperUsernameIsShownInTheHeader, "ProperUsernameIsShownInTheHeader");
+                Assert.IsTrue(LogOutActionIsAvailable, "LogOutActionIsAvailable");
             });
             #endregion
 

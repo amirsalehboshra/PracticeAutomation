@@ -7,6 +7,7 @@ using System.Text;
 using OpenQA.Selenium.Support.PageObjects;
 using RazorEngine.Compilation.ImpromptuInterface.Build;
 using PracticeAutomation.Utility;
+using AventStack.ExtentReports;
 
 namespace PracticeAutomation.Tests
 {
@@ -16,8 +17,6 @@ namespace PracticeAutomation.Tests
         [SetUp]
         public void IntializePages()
         {
-
-
             _homePage = new HomePage(driver);
             _loginPage = new _loginPage(driver);
             _accountCreationPage = new AccountCreationPage(driver);
@@ -28,29 +27,34 @@ namespace PracticeAutomation.Tests
         [Test]
         public void LoginIn()
         {
+
             #region Arrange
             bool MyAccountPageIsOpened = false;
             bool ProperUsernameIsShownInTheHeader = false;
-            bool LogOutActionIsAvailable = true;
+            bool LogOutActionIsAvailable = false;
             #endregion
 
             #region Act
-            //var _loginPage = PageFactory.InitElements<_loginPage>(driver);
-
             _homePage.ClickSignin();
             _loginPage.Login();
             string Username = Helper.GetConfigValueByKey("Username");
             MyAccountPageIsOpened = _myAccountPage.IsMyAccountPageOpened();
             ProperUsernameIsShownInTheHeader = _myAccountPage.IsProperUsernameShownInTheHeader(Username);
             LogOutActionIsAvailable = _myAccountPage.IsLogOutActionAvailable();
+            if (MyAccountPageIsOpened)
+                extentTest.Log(Status.Pass, "MyAccountPageIsOpened");
+            if (ProperUsernameIsShownInTheHeader)
+                extentTest.Log(Status.Pass, "ProperUsernameIsShownInTheHeader");
+            if (LogOutActionIsAvailable)
+                extentTest.Log(Status.Pass, "LogOutActionIsAvailable");
             #endregion
 
             #region Assert
             Assert.Multiple(() =>
             {
-                Assert.IsTrue(MyAccountPageIsOpened);
-                Assert.IsTrue(ProperUsernameIsShownInTheHeader);
-                Assert.IsTrue(LogOutActionIsAvailable);
+                Assert.IsTrue(MyAccountPageIsOpened, "MyAccountPageIsOpened");
+                Assert.IsTrue(ProperUsernameIsShownInTheHeader, "ProperUsernameIsShownInTheHeader");
+                Assert.IsTrue(LogOutActionIsAvailable, "LogOutActionIsAvailable");
             });
             #endregion
 

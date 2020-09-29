@@ -102,8 +102,8 @@ namespace PracticeAutomation.Pages
             int RowNumber = Helper.GetRandomNumber(0, 10);
             AccountCreationPageModel RegData = new AccountCreationPageModel();
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+            
             //open file and returns as Stream
-
             var stream = File.Open(@"..\..\..\Files\TestData\RegistrationData.xlsx", FileMode.Open, FileAccess.Read);
             using (var excelReader = ExcelReaderFactory.CreateReader(stream))
             {
@@ -140,25 +140,8 @@ namespace PracticeAutomation.Pages
                 RegData.MobilePhone = dt.Rows[RowNumber][19].ToString();
                 RegData.AddressAllias = dt.Rows[RowNumber][20].ToString();
 
-
-                //for (int i=0; i< result.Tables[0].Columns.Count;i++)
-                //{
-                //    if(result.Tables[0].Columns[i].ColumnName=='')
-
-                //}
-                //foreach (DataColumn col in result.Tables[0].Columns)
-                //{
-                //    foreach (DataRow row in result.Tables[0].Rows)
-                //    {
-                //        var x= row[col.ColumnName].ToString();
-                //    }
-                //}
                 excelReader.Close(); excelReader.Close();
             }
-
-
-            //FileStream stream = File.Open(@"D:\Projects\PracticeAutomation\PracticeAutomation\Files\TestData\RegistrationData.xlsx", FileMode.Open, FileAccess.Read);
-            //IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
 
             return RegData;
         }

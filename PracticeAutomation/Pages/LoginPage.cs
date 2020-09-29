@@ -17,7 +17,7 @@ namespace PracticeAutomation.Pages
         By LoginBtn = By.Id("SubmitLogin");
         #endregion
 
-        #region Constuctor
+        #region Constructor
         public _loginPage(IWebDriver driver)
         {
             this.driver = driver;

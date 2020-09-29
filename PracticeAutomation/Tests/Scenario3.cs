@@ -24,6 +24,7 @@ namespace PracticeAutomation.Tests
         [Test]
         public void Checkout()
         {
+
             _homePage.ClickSignin();
         }
 
