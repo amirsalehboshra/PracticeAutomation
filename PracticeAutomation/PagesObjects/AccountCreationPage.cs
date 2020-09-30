@@ -10,55 +10,47 @@ using System.Text;
 using OpenQA.Selenium.Support.UI;
 
 
-namespace PracticeAutomation.Pages
+namespace PracticeAutomation.PagesObjects
 {
-    class AccountCreationPage
+    public class AccountCreationPage
     {
         #region Properties
-        private IWebDriver driver;
-
-        private IWebElement TitleMrRadioBtnElement => driver.FindElement(By.CssSelector("label[for='id_gender1']"));
-        private IWebElement TitleMrsRadioBtnElement => driver.FindElement(By.CssSelector("label[for='id_gender2']"));
-        private IWebElement FirstNameTxtBoxElement => driver.FindElement(By.Id("customer_firstname"));
-        private IWebElement LastNameTxtBoxElement => driver.FindElement(By.Id("customer_lastname"));
-        private IWebElement PasswordTxtBoxElement => driver.FindElement(By.Id("passwd"));
-        private IWebElement BirthDateSelectDayElement => driver.FindElement(By.Id("days"));
-        private IWebElement BirthDateSelectMonthElement => driver.FindElement(By.Id("months"));
-        private IWebElement BirthDateSelectYearElement => driver.FindElement(By.Id("years"));
-        private IWebElement NewsletterChkBoxElement => driver.FindElement(By.Id("newsletter"));
-        private IWebElement OptinChkBoxElement => driver.FindElement(By.Id("optin"));
-        private IWebElement AddressFirstNameTxtBoxElement => driver.FindElement(By.Id("firstname"));
-        private IWebElement AddressLastNameTxtBoxElement => driver.FindElement(By.Id("lastname"));
-        private IWebElement CompanyTxtBoxElement => driver.FindElement(By.Id("company"));
-        private IWebElement Address1TxtBoxElement => driver.FindElement(By.Id("address1"));
-        private IWebElement Address2TxtBoxElement => driver.FindElement(By.Id("address2"));
-        private IWebElement CityTxtBoxElement => driver.FindElement(By.Id("city"));
-        private IWebElement StateSelectElement => driver.FindElement(By.Id("id_state"));
-        private IWebElement PostalCodeTxtBoxElement => driver.FindElement(By.Id("postcode"));
-        private IWebElement CountrySelectElement => driver.FindElement(By.Id("id_country"));
-        private IWebElement AdditionalInfoTxtAreaElement => driver.FindElement(By.Id("other"));
-        private IWebElement HomePhoneTxtBoxElement => driver.FindElement(By.Id("phone"));
-        private IWebElement MobilePhoneTxtBoxElement => driver.FindElement(By.Id("phone_mobile"));
-        private IWebElement AddressAlLiasTxtBoxElement => driver.FindElement(By.Id("alias"));
-        private IWebElement RegisterBtnElement => driver.FindElement(By.Id("submitAccount"));
+        private IWebElement TitleMrRadioBtnElement => Driver.FindElement(By.CssSelector("label[for='id_gender1']"));
+        private IWebElement TitleMrsRadioBtnElement => Driver.FindElement(By.CssSelector("label[for='id_gender2']"));
+        private IWebElement FirstNameTxtBoxElement => Driver.FindElement(By.Id("customer_firstname"));
+        private IWebElement LastNameTxtBoxElement => Driver.FindElement(By.Id("customer_lastname"));
+        private IWebElement PasswordTxtBoxElement => Driver.FindElement(By.Id("passwd"));
+        private IWebElement BirthDateSelectDayElement => Driver.FindElement(By.Id("days"));
+        private IWebElement BirthDateSelectMonthElement => Driver.FindElement(By.Id("months"));
+        private IWebElement BirthDateSelectYearElement => Driver.FindElement(By.Id("years"));
+        private IWebElement NewsletterChkBoxElement => Driver.FindElement(By.Id("newsletter"));
+        private IWebElement OptinChkBoxElement => Driver.FindElement(By.Id("optin"));
+        private IWebElement AddressFirstNameTxtBoxElement => Driver.FindElement(By.Id("firstname"));
+        private IWebElement AddressLastNameTxtBoxElement => Driver.FindElement(By.Id("lastname"));
+        private IWebElement CompanyTxtBoxElement => Driver.FindElement(By.Id("company"));
+        private IWebElement Address1TxtBoxElement => Driver.FindElement(By.Id("address1"));
+        private IWebElement Address2TxtBoxElement => Driver.FindElement(By.Id("address2"));
+        private IWebElement CityTxtBoxElement => Driver.FindElement(By.Id("city"));
+        private IWebElement StateSelectElement => Driver.FindElement(By.Id("id_state"));
+        private IWebElement PostalCodeTxtBoxElement => Driver.FindElement(By.Id("postcode"));
+        private IWebElement CountrySelectElement => Driver.FindElement(By.Id("id_country"));
+        private IWebElement AdditionalInfoTxtAreaElement => Driver.FindElement(By.Id("other"));
+        private IWebElement HomePhoneTxtBoxElement => Driver.FindElement(By.Id("phone"));
+        private IWebElement MobilePhoneTxtBoxElement => Driver.FindElement(By.Id("phone_mobile"));
+        private IWebElement AddressAlLiasTxtBoxElement => Driver.FindElement(By.Id("alias"));
+        private IWebElement RegisterBtnElement => Driver.FindElement(By.Id("submitAccount"));
         #endregion
 
-        #region Constructor
-        public AccountCreationPage(IWebDriver driver)
-        {
-            this.driver = driver;
-        }
-        #endregion
 
         #region Methods
         public string FillRegistrationDataAndSubmit()
         {
-          
+
 
             AccountCreationPageModel obj = ReadExcelSheet();
             if (obj.Title == "Mr")
                 TitleMrRadioBtnElement.Click();
-            else if (obj.Title=="Mrs")
+            else if (obj.Title == "Mrs")
                 TitleMrsRadioBtnElement.Click();
 
             FirstNameTxtBoxElement.SendKeys(obj.FirstName);
@@ -66,7 +58,7 @@ namespace PracticeAutomation.Pages
             PasswordTxtBoxElement.SendKeys(obj.Password);
             SelectElement drpDay = new SelectElement(BirthDateSelectDayElement);
             drpDay.SelectByValue(obj.Day);
-            SelectElement drpMonth= new SelectElement(BirthDateSelectMonthElement);
+            SelectElement drpMonth = new SelectElement(BirthDateSelectMonthElement);
             drpMonth.SelectByValue(obj.Month);
             SelectElement drpYear = new SelectElement(BirthDateSelectYearElement);
             drpYear.SelectByValue(obj.Year);
@@ -94,13 +86,13 @@ namespace PracticeAutomation.Pages
 
 
         }
-        
+
         static public AccountCreationPageModel ReadExcelSheet()
         {
             int RowNumber = Helper.GetRandomNumber(0, 10);
             AccountCreationPageModel RegData = new AccountCreationPageModel();
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
-            
+
             //open file and returns as Stream
             var stream = File.Open(@"..\..\..\Files\TestData\RegistrationData.xlsx", FileMode.Open, FileAccess.Read);
             using (var excelReader = ExcelReaderFactory.CreateReader(stream))

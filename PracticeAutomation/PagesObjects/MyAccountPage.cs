@@ -1,6 +1,7 @@
 ﻿using AventStack.ExtentReports;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using PracticeAutomation.Utility;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -9,35 +10,25 @@ using System.Text;
 
 
 
-namespace PracticeAutomation.Pages
+namespace PracticeAutomation.PagesObjects
 {
-    class MyAccountPage
+    public class MyAccountPage
     {
         #region Properties
-        private IWebDriver driver;
+        private IWebElement HeaderUsernameLnkElement => Driver.FindElement(By.XPath("//a[contains(@title, 'View my customer account')]/span"));
+        private IWebElement LogoutLnkElement => Driver.FindElement(By.XPath("//a[contains(@title, 'View my customer account')]/span"));
 
-        private IWebElement HeaderUsernameLnkElement => driver.FindElement(By.XPath("//*[contains(@title, 'View my customer account')]/span"));
-        private IWebElement LogoutLnkElement => driver.FindElement(By.XPath("//*[contains(@title, 'View my customer account')]/span"));
-
-        #endregion
-
-        #region Constructor 
-        public MyAccountPage(IWebDriver driver)
-        {
-            this.driver = driver;
-
-
-        }
         #endregion
 
         #region Methods
         public bool IsMyAccountPageOpened()
         {
-            if (driver.Url.EndsWith("controller=my-account"))
+            if (Driver.Current.Url.EndsWith("controller=my-account"))
             {
                 return true;
-            }else
-            return false;
+            }
+            else
+                return false;
         }
 
         public bool IsProperUsernameShownInTheHeader(string username)

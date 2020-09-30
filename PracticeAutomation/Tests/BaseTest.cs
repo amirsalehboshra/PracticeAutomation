@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using PracticeAutomation.Pages;
+using PracticeAutomation.PagesObjects;
 using PracticeAutomation.Tests;
 using System;
 using System.Collections.Generic;
@@ -22,18 +22,9 @@ using AventStack.ExtentReports.Reporter.Configuration;
 
 namespace Practice.Test
 {
-    class BaseTest
+    public abstract class BaseTest
     {
-        protected IWebDriver driver;
 
-        protected HomePage _homePage;
-        protected _loginPage _loginPage;
-        protected AccountCreationPage _accountCreationPage;
-        protected MyAccountPage _myAccountPage;
-        protected ProductPage _productPage;
-        protected OrderPage _orderPage;
-        protected MenuPage _menuPage;
-        protected ProductsPage _productsPage;
 
         protected static AventStack.ExtentReports.ExtentReports extentReports;
         protected static ExtentTest extentTest;
@@ -52,10 +43,15 @@ namespace Practice.Test
             string URL = Helper.GetConfigValueByKey("DevelopmentURL");
             // driver = Driver.GetDriver();
 
-            driver = new ChromeDriver();
-            driver.Manage().Window.Maximize();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
-            driver.Navigate().GoToUrl(URL);
+            //driver = new ChromeDriver();
+            //driver.Manage().Window.Maximize();
+            //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+            //driver.Navigate().GoToUrl(URL);
+
+            Driver.Init();
+            Pages.Init();
+
+            Driver.Goto(URL);
 
             //Start Report
             extentTest = extentReports.CreateTest(TestContext.CurrentContext.Test.Name, TestContext.CurrentContext.Test.FullName);
@@ -77,7 +73,7 @@ namespace Practice.Test
                 extentTest.Log(Status.Fail, status + errorMessage);
                 //To take screenshot
                 var ScreenshotName = TestContext.CurrentContext.Test.FullName;
-                Screenshot file = ((ITakesScreenshot)driver).GetScreenshot();
+                Screenshot file = ((ITakesScreenshot)Driver.Current).GetScreenshot();
                 var solutionDir = Path.GetDirectoryName(Path.GetDirectoryName(TestContext.CurrentContext.TestDirectory));
                 var screenshotFile = Path.Combine(solutionDir, "../", "Files", "Screenshots", ScreenshotName + ".png");
                 var screenshotPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, screenshotFile);
@@ -99,9 +95,9 @@ namespace Practice.Test
 
 
             //Close Driver
-            driver.Close();
-            driver.Quit();
-            driver.Dispose();
+            Driver.Current.Close();
+            Driver.Current.Quit();
+            Driver.Current.Dispose();
 
         }
 

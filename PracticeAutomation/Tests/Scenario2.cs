@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using Practice.Test;
-using PracticeAutomation.Pages;
+using PracticeAutomation.PagesObjects;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,15 +14,6 @@ namespace PracticeAutomation.Tests
     class Scenario2: BaseTest
     {
 
-        [SetUp]
-        public void IntializePages()
-        {
-            _homePage = new HomePage(driver);
-            _loginPage = new _loginPage(driver);
-            _accountCreationPage = new AccountCreationPage(driver);
-            _myAccountPage = new MyAccountPage(driver);
-
-        }
 
         [Test]
         public void LoginIn()
@@ -35,12 +26,12 @@ namespace PracticeAutomation.Tests
             #endregion
 
             #region Act
-            _homePage.ClickSignin();
-            _loginPage.Login();
+            Pages.Home.ClickSignin();
+            Pages.Login.Login();
             string Username = Helper.GetConfigValueByKey("Username");
-            MyAccountPageIsOpened = _myAccountPage.IsMyAccountPageOpened();
-            ProperUsernameIsShownInTheHeader = _myAccountPage.IsProperUsernameShownInTheHeader(Username);
-            LogOutActionIsAvailable = _myAccountPage.IsLogOutActionAvailable();
+            MyAccountPageIsOpened = Pages.MyAccount.IsMyAccountPageOpened();
+            ProperUsernameIsShownInTheHeader = Pages.MyAccount.IsProperUsernameShownInTheHeader(Username);
+            LogOutActionIsAvailable = Pages.MyAccount.IsLogOutActionAvailable();
             if (MyAccountPageIsOpened)
                 extentTest.Log(Status.Pass, "MyAccountPageIsOpened");
             if (ProperUsernameIsShownInTheHeader)

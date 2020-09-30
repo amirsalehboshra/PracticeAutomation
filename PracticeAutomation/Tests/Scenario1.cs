@@ -3,7 +3,8 @@ using AventStack.ExtentReports.Gherkin.Model;
 using NUnit.Framework;
 using OpenQA.Selenium.Support.PageObjects;
 using Practice.Test;
-using PracticeAutomation.Pages;
+using PracticeAutomation.PagesObjects;
+using PracticeAutomation.Utility;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,16 +16,7 @@ namespace PracticeAutomation.Tests
         public TestContext TestContext { get; set; }
 
 
-        [SetUp]
-        public void IntializePages()
-        {
 
-            _homePage = new HomePage(driver);
-            _loginPage = new _loginPage(driver);
-            _accountCreationPage = new AccountCreationPage(driver);
-            _myAccountPage = new MyAccountPage(driver);
-
-        }
 
         [Test]
         public void Register()
@@ -38,12 +30,12 @@ namespace PracticeAutomation.Tests
             #endregion
 
             #region Act
-            _homePage.ClickSignin();
-            _loginPage.EnterValidEmailAndStartCreatingAccount();
-            string Username = _accountCreationPage.FillRegistrationDataAndSubmit();
-            MyAccountPageIsOpened = _myAccountPage.IsMyAccountPageOpened();
-            ProperUsernameIsShownInTheHeader = _myAccountPage.IsProperUsernameShownInTheHeader(Username);
-            LogOutActionIsAvailable = _myAccountPage.IsLogOutActionAvailable();
+            Pages.Home.ClickSignin();
+            Pages.Login.EnterValidEmailAndStartCreatingAccount();
+            string Username = Pages.AccountCreation.FillRegistrationDataAndSubmit();
+            MyAccountPageIsOpened = Pages.MyAccount.IsMyAccountPageOpened();
+            ProperUsernameIsShownInTheHeader = Pages.MyAccount.IsProperUsernameShownInTheHeader(Username);
+            LogOutActionIsAvailable = Pages.MyAccount.IsLogOutActionAvailable();
             if (MyAccountPageIsOpened)
                 extentTest.Log(Status.Pass, "MyAccountPageIsOpened");
             if (ProperUsernameIsShownInTheHeader)
