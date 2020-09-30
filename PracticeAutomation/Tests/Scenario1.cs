@@ -13,7 +13,7 @@ namespace PracticeAutomation.Tests
     class Scenario1 : BaseTest
     {
         public TestContext TestContext { get; set; }
-       
+
 
         [SetUp]
         public void IntializePages()
@@ -44,7 +44,7 @@ namespace PracticeAutomation.Tests
             MyAccountPageIsOpened = _myAccountPage.IsMyAccountPageOpened();
             ProperUsernameIsShownInTheHeader = _myAccountPage.IsProperUsernameShownInTheHeader(Username);
             LogOutActionIsAvailable = _myAccountPage.IsLogOutActionAvailable();
-           if (MyAccountPageIsOpened)
+            if (MyAccountPageIsOpened)
                 extentTest.Log(Status.Pass, "MyAccountPageIsOpened");
             if (ProperUsernameIsShownInTheHeader)
                 extentTest.Log(Status.Pass, "ProperUsernameIsShownInTheHeader");

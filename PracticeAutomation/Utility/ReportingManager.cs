@@ -31,7 +31,19 @@ namespace PracticeAutomation.Utility
         public static AventStack.ExtentReports.ExtentReports CreateInstance()
         {
 
-            var htmlReporter = new ExtentHtmlReporter(reportPath);
+            var logger = new ExtentLoggerReporter(reportPath);
+            logger.Config.EnableTimeline = true;
+            logger.Config.CSS = "css-string";
+            logger.Config.DocumentTitle = "logger";
+            logger.Config.Encoding = "utf-8";
+            logger.Config.JS = "js-string";
+            logger.Config.ReportName = "logger";
+            logger.Config.Theme = Theme.Dark;
+
+
+
+
+            var htmlReporter = new ExtentV3HtmlReporter(reportPath);
             htmlReporter.Config.CSS = "css-string";
             htmlReporter.Config.DocumentTitle = "Practice Automation Report";
             htmlReporter.Config.EnableTimeline = true;
@@ -41,6 +53,8 @@ namespace PracticeAutomation.Utility
             htmlReporter.Config.Theme = Theme.Standard;
             extentReports = new AventStack.ExtentReports.ExtentReports();
             extentReports.AttachReporter(htmlReporter);
+            extentReports.AttachReporter(logger);
+
 
             return extentReports;
         }

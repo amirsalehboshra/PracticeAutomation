@@ -30,10 +30,13 @@ namespace Practice.Test
         protected _loginPage _loginPage;
         protected AccountCreationPage _accountCreationPage;
         protected MyAccountPage _myAccountPage;
+        protected ProductPage _productPage;
+        protected OrderPage _orderPage;
+        protected MenuPage _menuPage;
+        protected ProductsPage _productsPage;
 
         protected static AventStack.ExtentReports.ExtentReports extentReports;
         protected static ExtentTest extentTest;
-
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
