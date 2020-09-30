@@ -14,11 +14,9 @@ namespace PracticeAutomation.Utility
     {
         static public string GetConfigValueByKey(string key)
         {
-
             IConfiguration configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json", true, true).Build();
             var value = configuration.GetSection("ConfigurationVariables").GetSection(key).Value;
             return value;
-
         }
         static public int GetRandomNumber(int Min, int Max)
         {

@@ -12,7 +12,6 @@ namespace PracticeAutomation.Pages
 
         private IWebElement AddToCartBtnElement => driver.FindElement(By.CssSelector("button[name='Submit']"));
         private IWebElement ProceedToCheckoutBtnElement => driver.FindElement(By.CssSelector("a[title='Proceed to checkout']"));
-
         #endregion
 
         #region Constructor

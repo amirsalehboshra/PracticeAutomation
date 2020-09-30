@@ -42,7 +42,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Enums\" />
     <Folder Include="Files\Screenshots\" />
     <Folder Include="Files\TestReports\" />
   </ItemGroup>

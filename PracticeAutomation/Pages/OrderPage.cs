@@ -12,13 +12,8 @@ namespace PracticeAutomation.Pages
         #region Properties
         private IWebDriver driver;
         private IWebElement ProceedToCheckoutBtnElement01 => driver.FindElement(By.CssSelector("#center_column > p.cart_navigation.clearfix > a.button.btn.btn-default.standard-checkout.button-medium"));
-
         private IWebElement ProceedToCheckoutBtnElement03 => driver.FindElement(By.CssSelector("button[name='processAddress']"));
-
         private IWebElement ProceedToCheckoutBtnElement04 => driver.FindElement(By.CssSelector("button[name='processCarrier']"));
-        
-
-
         private IWebElement TermsOfserviceChkBoxElement => driver.FindElement(By.Id("cgv"));
         private IWebElement PayByBankWireLnkElement => driver.FindElement(By.CssSelector("a[title='Pay by bank wire']"));
         private IWebElement ConfirmOrderBtnElement => driver.FindElement(By.XPath("//*[@id='cart_navigation']/button"));

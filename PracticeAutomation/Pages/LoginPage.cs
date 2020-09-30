@@ -10,11 +10,11 @@ namespace PracticeAutomation.Pages
     {
         #region Properties
         private IWebDriver driver;
-        By EmailCreateTxtBox = By.Id("email_create");
-        By CreateAccountBtn = By.Id("SubmitCreate");
-        By EmailTxtBox = By.Id("email");
-        By PasswordTxtBox = By.Id("passwd");
-        By LoginBtn = By.Id("SubmitLogin");
+        private IWebElement EmailCreateTxtBoxElement => driver.FindElement(By.Id("email_create"));
+        private IWebElement CreateAccountBtnElement => driver.FindElement(By.Id("SubmitCreate"));
+        private IWebElement EmailTxtBoxElement => driver.FindElement(By.Id("email"));
+        private IWebElement PasswordTxtBoxElement => driver.FindElement(By.Id("passwd"));
+        private IWebElement LoginBtnElement => driver.FindElement(By.Id("SubmitLogin"));
         #endregion
 
         #region Constructor
@@ -25,10 +25,10 @@ namespace PracticeAutomation.Pages
         #endregion
 
         #region Methods
-        public void EnterEmailAndStartCreatingAccount()
+        public void EnterValidEmailAndStartCreatingAccount()
         {
-            driver.FindElement(EmailCreateTxtBox).SendKeys(Helper.GetRandomMail());
-            driver.FindElement(CreateAccountBtn).Click();
+            EmailCreateTxtBoxElement.SendKeys(Helper.GetRandomMail());
+            CreateAccountBtnElement.Click();
         
         }
 
@@ -37,10 +37,9 @@ namespace PracticeAutomation.Pages
             string email = Helper.GetConfigValueByKey("Email");
             string password = Helper.GetConfigValueByKey("Password");
 
-            driver.FindElement(EmailTxtBox).SendKeys(email);
-            driver.FindElement(PasswordTxtBox).SendKeys(password);
-            driver.FindElement(LoginBtn).Click();
-        
+            EmailTxtBoxElement.SendKeys(email);
+            PasswordTxtBoxElement.SendKeys(password);
+            LoginBtnElement.Click();
         }
         #endregion
     }

@@ -10,7 +10,7 @@ namespace PracticeAutomation.Pages
     {
         #region Properties
         private IWebDriver driver;
-        By LoginLink = By.CssSelector("a[title='Log in to your customer account']");
+        private IWebElement LoginLinkElement => driver.FindElement(By.CssSelector("a[title='Log in to your customer account']"));
         #endregion
 
         #region Constructor
@@ -23,7 +23,7 @@ namespace PracticeAutomation.Pages
         #region Methods
         public void ClickSignin()
         {
-            driver.FindElement(LoginLink).Click();
+            LoginLinkElement.Click();
         }
         #endregion
     }

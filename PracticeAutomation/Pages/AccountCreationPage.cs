@@ -17,32 +17,30 @@ namespace PracticeAutomation.Pages
         #region Properties
         private IWebDriver driver;
 
-      
-        By TitleMrRadioBtn = By.CssSelector("label[for='id_gender1']");
-        By TitleMrsRadioBtn = By.CssSelector("label[for='id_gender2']");
-
-        By FirstNameTxtBox = By.Id("customer_firstname");
-        By LastNameTxtBox = By.Id("customer_lastname");
-        By PasswordTxtBox = By.Id("passwd");
-        By BirthDateSelectDay = By.Id("days");
-        By BirthDateSelectMonth = By.Id("months");
-        By BirthDateSelectYear = By.Id("years");
-        By NewsletterChkBox = By.Id("newsletter");
-        By OptinChkBox = By.Id("optin");
-        By AddressFirstNameTxtBox = By.Id("firstname");
-        By AddressLastNameTxtBox = By.Id("lastname");
-        By CompanyTxtBox = By.Id("company");
-        By Address1TxtBox = By.Id("address1");
-        By Address2TxtBox = By.Id("address2");
-        By CityTxtBox = By.Id("city");
-        By StateSelect = By.Id("id_state");
-        By PostalCodeTxtBox = By.Id("postcode");
-        By CountrySelect = By.Id("id_country");
-        By AdditionalInfoTxtArea = By.Id("other");
-        By HomePhoneTxtBox = By.Id("phone");
-        By MobilePhoneTxtBox = By.Id("phone_mobile");
-        By AddressAlLiasTxtBox = By.Id("alias");
-        By RegisterBtn = By.Id("submitAccount");
+        private IWebElement TitleMrRadioBtnElement => driver.FindElement(By.CssSelector("label[for='id_gender1']"));
+        private IWebElement TitleMrsRadioBtnElement => driver.FindElement(By.CssSelector("label[for='id_gender2']"));
+        private IWebElement FirstNameTxtBoxElement => driver.FindElement(By.Id("customer_firstname"));
+        private IWebElement LastNameTxtBoxElement => driver.FindElement(By.Id("customer_lastname"));
+        private IWebElement PasswordTxtBoxElement => driver.FindElement(By.Id("passwd"));
+        private IWebElement BirthDateSelectDayElement => driver.FindElement(By.Id("days"));
+        private IWebElement BirthDateSelectMonthElement => driver.FindElement(By.Id("months"));
+        private IWebElement BirthDateSelectYearElement => driver.FindElement(By.Id("years"));
+        private IWebElement NewsletterChkBoxElement => driver.FindElement(By.Id("newsletter"));
+        private IWebElement OptinChkBoxElement => driver.FindElement(By.Id("optin"));
+        private IWebElement AddressFirstNameTxtBoxElement => driver.FindElement(By.Id("firstname"));
+        private IWebElement AddressLastNameTxtBoxElement => driver.FindElement(By.Id("lastname"));
+        private IWebElement CompanyTxtBoxElement => driver.FindElement(By.Id("company"));
+        private IWebElement Address1TxtBoxElement => driver.FindElement(By.Id("address1"));
+        private IWebElement Address2TxtBoxElement => driver.FindElement(By.Id("address2"));
+        private IWebElement CityTxtBoxElement => driver.FindElement(By.Id("city"));
+        private IWebElement StateSelectElement => driver.FindElement(By.Id("id_state"));
+        private IWebElement PostalCodeTxtBoxElement => driver.FindElement(By.Id("postcode"));
+        private IWebElement CountrySelectElement => driver.FindElement(By.Id("id_country"));
+        private IWebElement AdditionalInfoTxtAreaElement => driver.FindElement(By.Id("other"));
+        private IWebElement HomePhoneTxtBoxElement => driver.FindElement(By.Id("phone"));
+        private IWebElement MobilePhoneTxtBoxElement => driver.FindElement(By.Id("phone_mobile"));
+        private IWebElement AddressAlLiasTxtBoxElement => driver.FindElement(By.Id("alias"));
+        private IWebElement RegisterBtnElement => driver.FindElement(By.Id("submitAccount"));
         #endregion
 
         #region Constructor
@@ -59,38 +57,38 @@ namespace PracticeAutomation.Pages
 
             AccountCreationPageModel obj = ReadExcelSheet();
             if (obj.Title == "Mr")
-                driver.FindElement(TitleMrRadioBtn).Click();
+                TitleMrRadioBtnElement.Click();
             else if (obj.Title=="Mrs")
-                driver.FindElement(TitleMrsRadioBtn).Click();
+                TitleMrsRadioBtnElement.Click();
 
-            driver.FindElement(FirstNameTxtBox).SendKeys(obj.FirstName);
-            driver.FindElement(LastNameTxtBox).SendKeys(obj.LastName);
-            driver.FindElement(PasswordTxtBox).SendKeys(obj.Password);
-            SelectElement drpDay = new SelectElement(driver.FindElement(BirthDateSelectDay));
+            FirstNameTxtBoxElement.SendKeys(obj.FirstName);
+            LastNameTxtBoxElement.SendKeys(obj.LastName);
+            PasswordTxtBoxElement.SendKeys(obj.Password);
+            SelectElement drpDay = new SelectElement(BirthDateSelectDayElement);
             drpDay.SelectByValue(obj.Day);
-            SelectElement drpMonth= new SelectElement(driver.FindElement(BirthDateSelectMonth));
+            SelectElement drpMonth= new SelectElement(BirthDateSelectMonthElement);
             drpMonth.SelectByValue(obj.Month);
-            SelectElement drpYear = new SelectElement(driver.FindElement(BirthDateSelectYear));
+            SelectElement drpYear = new SelectElement(BirthDateSelectYearElement);
             drpYear.SelectByValue(obj.Year);
             if (obj.Newsletter == "TRUE")
-                driver.FindElement(NewsletterChkBox).Click();
+                NewsletterChkBoxElement.Click();
             if (obj.Optin == "TRUE")
-                driver.FindElement(OptinChkBox).Click();
-            driver.FindElement(CompanyTxtBox).SendKeys(obj.Company);
-            driver.FindElement(Address1TxtBox).SendKeys(obj.Address);
-            driver.FindElement(Address2TxtBox).SendKeys(obj.Address2);
-            driver.FindElement(CityTxtBox).SendKeys(obj.City);
-            SelectElement drpState = new SelectElement(driver.FindElement(StateSelect));
+                OptinChkBoxElement.Click();
+            CompanyTxtBoxElement.SendKeys(obj.Company);
+            Address1TxtBoxElement.SendKeys(obj.Address);
+            Address2TxtBoxElement.SendKeys(obj.Address2);
+            CityTxtBoxElement.SendKeys(obj.City);
+            SelectElement drpState = new SelectElement(StateSelectElement);
             drpState.SelectByText(obj.State);
-            driver.FindElement(PostalCodeTxtBox).SendKeys(obj.PostalCode);
-            SelectElement drpCountry = new SelectElement(driver.FindElement(CountrySelect));
+            PostalCodeTxtBoxElement.SendKeys(obj.PostalCode);
+            SelectElement drpCountry = new SelectElement(CountrySelectElement);
             drpCountry.SelectByText(obj.Country);
-            driver.FindElement(AdditionalInfoTxtArea).SendKeys(obj.AdditionalInfo);
-            driver.FindElement(HomePhoneTxtBox).SendKeys(obj.HomePhone);
-            driver.FindElement(MobilePhoneTxtBox).SendKeys(obj.MobilePhone);
-            driver.FindElement(AddressAlLiasTxtBox).SendKeys(obj.AddressAllias);
+            AdditionalInfoTxtAreaElement.SendKeys(obj.AdditionalInfo);
+            HomePhoneTxtBoxElement.SendKeys(obj.HomePhone);
+            MobilePhoneTxtBoxElement.SendKeys(obj.MobilePhone);
+            AddressAlLiasTxtBoxElement.SendKeys(obj.AddressAllias);
 
-            driver.FindElement(RegisterBtn).Click();
+            RegisterBtnElement.Click();
 
             return obj.FirstName + " " + obj.LastName;
 

@@ -39,7 +39,7 @@ namespace PracticeAutomation.Tests
 
             #region Act
             _homePage.ClickSignin();
-            _loginPage.EnterEmailAndStartCreatingAccount();
+            _loginPage.EnterValidEmailAndStartCreatingAccount();
             string Username = _accountCreationPage.FillRegistrationDataAndSubmit();
             MyAccountPageIsOpened = _myAccountPage.IsMyAccountPageOpened();
             ProperUsernameIsShownInTheHeader = _myAccountPage.IsProperUsernameShownInTheHeader(Username);
