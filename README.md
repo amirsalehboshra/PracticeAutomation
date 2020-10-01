@@ -35,21 +35,21 @@ You can find the report of last run here: \PracticeAutomation\Files\TestReports
 
 
 Nugets used
-"nunit": Unittest
-"NUnit3TestAdapter": Unittest
-"Selenium.Chrome.WebDriver": ChromeDriver
-"Selenium.Firefox.WebDriver": FirefoxDriver
-"Selenium.Support": Selenium Support (select from dropdown)
-"Selenium.WebDriver": Selenium webdriver
-"DotNetSeleniumExtras.WaitHelpers": for future use (Wait Conditions)
-"ExcelDataReader": Reading excel 
-"ExcelDataReader.DataSet": Reading excel
-"ExtentReports.Core": Reporting
-"Microsoft.Extensions.Configuration": Configuration
-"Microsoft.Extensions.Configuration.FileExtensions": Configuration
-"Microsoft.Extensions.Configuration.Json": Configuration
-"System.Configuration.ConfigurationManager": Configuration
-"System.Runtime.Extensions": Runtime
+- "nunit": Unittest
+- "NUnit3TestAdapter": Unittest
+- "Selenium.Chrome.WebDriver": ChromeDriver
+- "Selenium.Firefox.WebDriver": FirefoxDriver
+- "Selenium.Support": Selenium Support (select from dropdown)
+- "Selenium.WebDriver": Selenium webdriver
+- "DotNetSeleniumExtras.WaitHelpers": for future use (Wait Conditions)
+- "ExcelDataReader": Reading excel 
+- "ExcelDataReader.DataSet": Reading excel
+- "ExtentReports.Core": Reporting
+- "Microsoft.Extensions.Configuration": Configuration
+- "Microsoft.Extensions.Configuration.FileExtensions": Configuration
+- "Microsoft.Extensions.Configuration.Json": Configuration
+- "System.Configuration.ConfigurationManager": Configuration
+- "System.Runtime.Extensions": Runtime
 
 
 
