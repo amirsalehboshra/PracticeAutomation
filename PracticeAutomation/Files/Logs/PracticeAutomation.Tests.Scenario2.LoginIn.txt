@@ -1,8 +1,0 @@
-Starting timestamp: 10/1/2020 4:59:52 PM
-Test: PracticeAutomation.Tests.Scenario2.LoginIn
-[INFO]: browser: Chrome
-[INFO]: Environmrnt url: http://automationpractice.com/
-    [STEP]: ClickSignin  10/1/2020 5:00:03 PM
-    [STEP]: Login  10/1/2020 5:00:06 PM
-[INFO]: Passed
-[INFO]: Browser closed

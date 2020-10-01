@@ -1,8 +1,0 @@
-Starting timestamp: 10/1/2020 4:59:27 PM
-Test: PracticeAutomation.Tests.Scenario1.Register
-[INFO]: browser: Chrome
-[INFO]: Environmrnt url: http://automationpractice.com/
-    [STEP]: ClickSignin  10/1/2020 4:59:39 PM
-    [STEP]: EnterValidEmailAndStartCreatingAccount  10/1/2020 4:59:40 PM
-[INFO]: Passed
-[INFO]: Browser closed
