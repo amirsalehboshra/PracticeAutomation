@@ -2,19 +2,19 @@
 PracticeAutomation
 
 Project Structure
-> Files
-> 	Logs
-> 	Screenshots
-> 	TestData
-> 	TestReports
-> PagesModels
-> 	.. For DataModels
-> PagesObjects
-> 	.. for Pages 
-> Tests
-> 	.. Test scenaios
-> Utility
-> 	.. Driver, Logging, Reporting and Helper
+- Files
+-- Logs
+-- Screenshots
+-- TestData
+-- TestReports
+- PagesModels
+-- .. For DataModels
+- PagesObjects
+-- .. for Pages 
+- Tests
+-- .. Test scenaios
+- Utility
+-- .. Driver, Logging, Reporting and Helper
 
 
 Ho to configure Test data, Environment and Browser?
