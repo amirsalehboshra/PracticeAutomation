@@ -19,6 +19,8 @@ namespace PracticeAutomation.PagesObjects
         public void SelectProduct(string product)
         {
             Driver.FindElement(By.LinkText( product)).Click();
+            Logger.Log.Step(Helper.GetCurrentMethod()+" "+product);
+
         }
         #endregion
     }

@@ -23,10 +23,12 @@ namespace PracticeAutomation.PagesObjects
         {
             EmailCreateTxtBoxElement.SendKeys(Helper.GetRandomMail());
             CreateAccountBtnElement.Click();
-        
+            Logger.Log.Step(Helper.GetCurrentMethod());
+
+
         }
 
-        public void Login() 
+        public void Login()
         {
             string email = Helper.GetConfigValueByKey("Email");
             string password = Helper.GetConfigValueByKey("Password");
@@ -34,6 +36,8 @@ namespace PracticeAutomation.PagesObjects
             EmailTxtBoxElement.SendKeys(email);
             PasswordTxtBoxElement.SendKeys(password);
             LoginBtnElement.Click();
+            Logger.Log.Step(Helper.GetCurrentMethod());
+
         }
         #endregion
     }

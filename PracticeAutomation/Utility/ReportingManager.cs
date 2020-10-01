@@ -2,16 +2,15 @@
 using AventStack.ExtentReports.Reporter;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using AventStack.ExtentReports.Reporter.Configuration;
 
 namespace PracticeAutomation.Utility
 {
-   public class ReportingManager
+    public class ReportingManager
     {
         static AventStack.ExtentReports.ExtentReports extentReports;
+        static ExtentTest extentTests;
         private static string solutionDir = Path.GetDirectoryName(Path.GetDirectoryName(TestContext.CurrentContext.TestDirectory));
         private static string reportFile = Path.Combine(solutionDir, "../", "Files", "TestReports", "ExtentReport.html");
         private static string reportPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, reportFile);
@@ -21,28 +20,15 @@ namespace PracticeAutomation.Utility
 
         }
 
-        public static AventStack.ExtentReports.ExtentReports GetInstance()
+        public static AventStack.ExtentReports.ExtentReports GetReportInstance()
         {
             if (extentReports == null)
-                CreateInstance();
+                CreateReportInstance();
             return extentReports;
         }
 
-        public static AventStack.ExtentReports.ExtentReports CreateInstance()
+        public static AventStack.ExtentReports.ExtentReports CreateReportInstance()
         {
-
-            var logger = new ExtentLoggerReporter(reportPath);
-            logger.Config.EnableTimeline = true;
-            logger.Config.CSS = "css-string";
-            logger.Config.DocumentTitle = "logger";
-            logger.Config.Encoding = "utf-8";
-            logger.Config.JS = "js-string";
-            logger.Config.ReportName = "logger";
-            logger.Config.Theme = Theme.Dark;
-
-
-
-
             var htmlReporter = new ExtentV3HtmlReporter(reportPath);
             htmlReporter.Config.CSS = "css-string";
             htmlReporter.Config.DocumentTitle = "Practice Automation Report";
@@ -53,12 +39,24 @@ namespace PracticeAutomation.Utility
             htmlReporter.Config.Theme = Theme.Standard;
             extentReports = new AventStack.ExtentReports.ExtentReports();
             extentReports.AttachReporter(htmlReporter);
-            extentReports.AttachReporter(logger);
-
 
             return extentReports;
         }
+        public static ExtentTest GetTestInstance()
+        {
+            if (extentTests == null)
+                CreateTestInstance();
+            return extentTests;
+        }
 
+        public static ExtentTest CreateTestInstance()
+        {
+            extentTests = extentReports.CreateTest(TestContext.CurrentContext.Test.Name, TestContext.CurrentContext.Test.FullName);
+            return extentTests;
+        }
+
+        public static ExtentTest extentTest => extentTests ?? throw new NullReferenceException("extentTest is null.");
+        public static AventStack.ExtentReports.ExtentReports extentReport => extentReports ?? throw new NullReferenceException("extentTest is null.");
 
     }
 }

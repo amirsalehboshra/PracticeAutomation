@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PracticeAutomation.Models
+namespace PracticeAutomation.PagesModels
 {
     public class AccountCreationPageModel
     {

@@ -1,26 +1,46 @@
-﻿using AventStack.ExtentReports;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Security.Policy;
-using System.Text;
-using System.Threading;
+using System.IO;
 
 namespace PracticeAutomation.Utility
 {
-    public static class Driver
+    public  class Driver
     {
         [ThreadStatic]
         private static IWebDriver _driver;
 
-        public static void Init()
+
+            public static void Init()
         {
-            _driver = new ChromeDriver();
-            _driver.Manage().Window.Maximize();
-            _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+            string browser = Helper.GetConfigValueByKey("Browser");
+
+            Logger.Log.Info("browser: " + browser);
+
+            switch (browser)
+            {
+                case "Chrome":
+                    _driver = new ChromeDriver();
+                    _driver.Manage().Window.Maximize();
+                    _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+
+                    break;
+                case "Firefox":
+                    _driver = new FirefoxDriver();
+                    _driver.Manage().Window.Maximize();
+                    _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+                    break;
+                default:
+                    _driver = new ChromeDriver();
+                    _driver.Manage().Window.Maximize();
+                    _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+                    break;
+            }
+
+
 
         }
 
@@ -33,13 +53,26 @@ namespace PracticeAutomation.Utility
                 url = $"http://{url}";
             }
 
-            Debug.WriteLine(url);
             Current.Navigate().GoToUrl(url);
+            Logger.Log.Info("Environmrnt url: "+ url);
+
+        }
+
+        public static void CaptureScreenshot(string screenshotName)
+        {
+            Screenshot file = ((ITakesScreenshot)Driver.Current).GetScreenshot();
+            var solutionDir = Path.GetDirectoryName(Path.GetDirectoryName(TestContext.CurrentContext.TestDirectory));
+            var screenshotFile = Path.Combine(solutionDir, "../", "Files", "Screenshots", screenshotName + ".png");
+            var screenshotPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, screenshotFile);
+            //Save screenshot
+            file.SaveAsFile(screenshotPath, ScreenshotImageFormat.Png);
+
         }
 
         public static IWebElement FindElement(By by)
         {
             return Current.FindElement(by);
+
         }
 
         public static IList<IWebElement> FindElements(By by)
@@ -50,33 +83,9 @@ namespace PracticeAutomation.Utility
         public static void Click(IWebElement element)
         {
             element.Click();
+            Logger.Log.Step("CLick: " + element.Text);
+
         }
-
-
-        //private static IWebDriver driver;
-
-
-        //private Driver()
-        //{
-
-        //}
-
-        //public static IWebDriver GetDriver()
-        //{
-        //    if (driver == null)
-        //        InitializeDriver();
-        //    return driver;
-        //}
-
-
-        //public static IWebDriver InitializeDriver()
-        //{
-        //    driver = new ChromeDriver();
-        //    driver.Manage().Window.Maximize();
-        //    driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
-
-        //    return driver;
-        //}
 
     }
 }

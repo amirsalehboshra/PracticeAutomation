@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using PracticeAutomation.Utility;
 using System;
 using System.Collections.Generic;
@@ -10,22 +11,15 @@ namespace PracticeAutomation.PagesObjects
     public class HomePage
     {
 
-        public readonly HomePageMap Map;
+        public IWebElement LoginLinkElement => Driver.FindElement(By.CssSelector("a[title='Log in to your customer account']"));
 
-        public HomePage()
-        {
-            Map = new HomePageMap();
-        }
 
         public void ClickSignin()
         {
-            Map.LoginLinkElement.Click();
+            LoginLinkElement.Click();
+            Logger.Log.Step(Helper.GetCurrentMethod());
         }
     }
 
-    public class HomePageMap
-    {
-        public IWebElement LoginLinkElement => Driver.FindElement(By.CssSelector("a[title='Log in to your customer account']"));
-    }
 
 }

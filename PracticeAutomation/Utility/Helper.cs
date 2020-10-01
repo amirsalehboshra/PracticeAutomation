@@ -1,12 +1,8 @@
-﻿using ExcelDataReader;
-using Microsoft.Extensions.Configuration;
-using PracticeAutomation.Models;
+﻿using Microsoft.Extensions.Configuration;
+using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Data;
+using System.Diagnostics;
 using System.IO;
-using System.Text;
 
 namespace PracticeAutomation.Utility
 {
@@ -24,6 +20,14 @@ namespace PracticeAutomation.Utility
             var value = random.Next(Min, Max);
             return value;
         }
+        public static string GetCurrentMethod()
+        {
+            var st = new StackTrace();
+            var sf = st.GetFrame(1);
+
+            return sf.GetMethod().Name;
+        }
+
 
         public static string GetDateTimeVariable()
         {
@@ -36,6 +40,14 @@ namespace PracticeAutomation.Utility
         {
             string email = "amir+" + GetDateTimeVariable() + "@gmail.com";
             return email;
+        }
+
+        public static string GetScreenshotPath()
+        {
+            var solutionDir = Path.GetDirectoryName(Path.GetDirectoryName(TestContext.CurrentContext.TestDirectory));
+            var screenshotFile = Path.Combine(solutionDir, "../", "Files", "Screenshots", TestContext.CurrentContext.Test.FullName + ".png");
+            var screenshotPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, screenshotFile);
+            return screenshotPath;
         }
     }
 }

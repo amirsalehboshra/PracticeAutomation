@@ -18,11 +18,15 @@ namespace PracticeAutomation.PagesObjects
         public void AddToCart()
         {
             AddToCartBtnElement.Click();
+            Logger.Log.Step(Helper.GetCurrentMethod());
+
         }
 
         public void ProceedToCheckout()
         {
             ProceedToCheckoutBtnElement.Click();
+            Logger.Log.Step(Helper.GetCurrentMethod());
+
         }
         #endregion
     }

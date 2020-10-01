@@ -1,22 +1,13 @@
 ﻿using AventStack.ExtentReports;
-using AventStack.ExtentReports.Gherkin.Model;
 using NUnit.Framework;
-using OpenQA.Selenium.Support.PageObjects;
 using Practice.Test;
 using PracticeAutomation.PagesObjects;
 using PracticeAutomation.Utility;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PracticeAutomation.Tests
 {
     class Scenario1 : BaseTest
     {
-        public TestContext TestContext { get; set; }
-
-
-
 
         [Test]
         public void Register()
@@ -32,16 +23,18 @@ namespace PracticeAutomation.Tests
             #region Act
             Pages.Home.ClickSignin();
             Pages.Login.EnterValidEmailAndStartCreatingAccount();
+           
             string Username = Pages.AccountCreation.FillRegistrationDataAndSubmit();
             MyAccountPageIsOpened = Pages.MyAccount.IsMyAccountPageOpened();
             ProperUsernameIsShownInTheHeader = Pages.MyAccount.IsProperUsernameShownInTheHeader(Username);
             LogOutActionIsAvailable = Pages.MyAccount.IsLogOutActionAvailable();
+           
             if (MyAccountPageIsOpened)
-                extentTest.Log(Status.Pass, "MyAccountPageIsOpened");
+                ReportingManager.extentTest.Log(Status.Pass, "MyAccountPageIsOpened");
             if (ProperUsernameIsShownInTheHeader)
-                extentTest.Log(Status.Pass, "ProperUsernameIsShownInTheHeader");
+                ReportingManager.extentTest.Log(Status.Pass, "ProperUsernameIsShownInTheHeader");
             if (LogOutActionIsAvailable)
-                extentTest.Log(Status.Pass, "LogOutActionIsAvailable");
+                ReportingManager.extentTest.Log(Status.Pass, "LogOutActionIsAvailable");
             #endregion
 
             #region Assert

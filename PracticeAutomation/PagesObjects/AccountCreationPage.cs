@@ -1,6 +1,6 @@
 ﻿using ExcelDataReader;
 using OpenQA.Selenium;
-using PracticeAutomation.Models;
+using PracticeAutomation.PagesModels;
 using PracticeAutomation.Utility;
 using System;
 using System.Collections.Generic;
@@ -45,8 +45,6 @@ namespace PracticeAutomation.PagesObjects
         #region Methods
         public string FillRegistrationDataAndSubmit()
         {
-
-
             AccountCreationPageModel obj = ReadExcelSheet();
             if (obj.Title == "Mr")
                 TitleMrRadioBtnElement.Click();
@@ -84,7 +82,6 @@ namespace PracticeAutomation.PagesObjects
 
             return obj.FirstName + " " + obj.LastName;
 
-
         }
 
         static public AccountCreationPageModel ReadExcelSheet()
@@ -105,7 +102,6 @@ namespace PracticeAutomation.PagesObjects
                     }
                 });
                 DataTable dt = result.Tables[0];
-
 
                 int coulmnCount = result.Tables[0].Columns.Count;
                 RegData.Title = dt.Rows[RowNumber][0].ToString();

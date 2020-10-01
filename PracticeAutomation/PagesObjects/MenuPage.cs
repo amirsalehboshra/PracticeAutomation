@@ -24,6 +24,8 @@ namespace PracticeAutomation.PagesObjects
         internal void SelectWomenCategory()
         {
             SelectCategory(WomenCategoryLnkElement);
+            Logger.Log.Step(Helper.GetCurrentMethod());
+
         }
         #endregion
     }

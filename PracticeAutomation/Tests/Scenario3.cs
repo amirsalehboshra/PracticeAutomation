@@ -3,18 +3,11 @@ using NUnit.Framework;
 using Practice.Test;
 using PracticeAutomation.PagesObjects;
 using PracticeAutomation.Utility;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
 
 namespace PracticeAutomation.Tests
 {
     class Scenario3: BaseTest
     {
-
-
-
         [Test]
         public void Checkout()
         {
@@ -28,7 +21,7 @@ namespace PracticeAutomation.Tests
             Pages.Home.ClickSignin();
             Pages.Login.Login();
             Pages.Menu.SelectWomenCategory();
-            Pages.Products.SelectProduct("Faded Short Sleeve T-shirts");
+            Pages.Products.SelectProduct(Helper.GetConfigValueByKey("Product"));
             Pages.Product.AddToCart();
             Pages.Product.ProceedToCheckout();
             Pages.Order.ProceedToCheckout();
@@ -39,11 +32,11 @@ namespace PracticeAutomation.Tests
             CurrentPageIsTheLastStepOfOrdering = PagesObjects.Pages.Order.IsCurrentPageTheLastStepOfOrdering();
             
             if (OrderConfirmationPageIsOpened)
-                extentTest.Log(Status.Pass, "OrderConfirmationPageIsOpened");
+                ReportingManager.extentTest.Log(Status.Pass, "OrderConfirmationPageIsOpened");
             if (TheOrderIsComplete)
-                extentTest.Log(Status.Pass, "TheOrderIsComplete");
+                ReportingManager.extentTest.Log(Status.Pass, "TheOrderIsComplete");
             if (CurrentPageIsTheLastStepOfOrdering)
-                extentTest.Log(Status.Pass, "CurrentPageIsTheLastStepOfOrdering");
+                ReportingManager.extentTest.Log(Status.Pass, "CurrentPageIsTheLastStepOfOrdering");
             #endregion
 
             #region Assert

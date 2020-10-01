@@ -31,12 +31,16 @@ namespace PracticeAutomation.PagesObjects
             ProceedToCheckoutBtnElement03.Click();
             TermsOfserviceChkBoxElement.Click();
             ProceedToCheckoutBtnElement04.Click();
+            Logger.Log.Step(Helper.GetCurrentMethod());
+
         }
 
         public void ConfirmOrder()
         {
             PayByBankWireLnkElement.Click();
             ConfirmOrderBtnElement.Click();
+            Logger.Log.Step(Helper.GetCurrentMethod());
+
         }
 
         public bool IsTheOrderComplete()
