@@ -22,8 +22,8 @@ How to run?
 2. Extract it to a folder path
 3. Find the project path like "C:\Users\amir.saleh\Documents\GitHub\PracticeAutomation\PracticeAutomation\bin\Debug\netcoreapp3.1"
 4. Open CMD as administrator
-5. open the project path
-6. write this commant line: dotnet test PracticeAutomation.dll 
+5. Write the project path
+6. Write this commant line: dotnet test PracticeAutomation.dll 
 
 How to open Reports?
 
