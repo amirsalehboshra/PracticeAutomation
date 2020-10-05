@@ -45,7 +45,7 @@ namespace Practice.Test
                 Logger.Log.Error(errorMessage);
                 Logger.Log.Error(stackTrace);
 
-                ReportingManager.extentTest.Log(Status.Error, status + errorMessage);
+                ReportingManager.extentTest.Log(Status.Fail, status + errorMessage);
                 //To take screenshot
                 Driver.CaptureScreenshot(TestContext.CurrentContext.Test.FullName);
                 //Log screenshot
