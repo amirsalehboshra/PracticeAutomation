@@ -41,11 +41,40 @@ namespace PracticeAutomation.PagesObjects
         private IWebElement RegisterBtnElement => Driver.FindElement(By.Id("submitAccount"));
         #endregion
 
-
         #region Methods
         public string FillRegistrationDataAndSubmit()
         {
-            AccountCreationPageModel obj = ReadExcelSheet();
+            int RowNumber = Helper.GetRandomNumber(0, 10);
+
+            string filePath = @"..\..\..\Files\TestData\RegistrationData.xlsx";
+            ExcelReader excelReader = new ExcelReader();
+            DataTable dataTable = excelReader.ReadExcelSheet(filePath);
+
+            AccountCreationPageModel obj = new AccountCreationPageModel();
+
+            obj.Title = dataTable.Rows[RowNumber][0].ToString();
+            obj.FirstName = dataTable.Rows[RowNumber][1].ToString();
+            obj.LastName = dataTable.Rows[RowNumber][2].ToString();
+            obj.Email = dataTable.Rows[RowNumber][3].ToString();
+            obj.Password = dataTable.Rows[RowNumber][4].ToString();
+            obj.Day = dataTable.Rows[RowNumber][5].ToString();
+            obj.Month = dataTable.Rows[RowNumber][6].ToString();
+            obj.Year = dataTable.Rows[RowNumber][7].ToString();
+            obj.Newsletter = dataTable.Rows[RowNumber][8].ToString();
+            obj.Optin = dataTable.Rows[RowNumber][9].ToString();
+            obj.Company = dataTable.Rows[RowNumber][10].ToString();
+            obj.Address = dataTable.Rows[RowNumber][11].ToString();
+            obj.Address2 = dataTable.Rows[RowNumber][12].ToString();
+            obj.City = dataTable.Rows[RowNumber][13].ToString();
+            obj.State = dataTable.Rows[RowNumber][14].ToString();
+            obj.PostalCode = dataTable.Rows[RowNumber][15].ToString();
+            obj.Country = dataTable.Rows[RowNumber][16].ToString();
+            obj.AdditionalInfo = dataTable.Rows[RowNumber][17].ToString();
+            obj.HomePhone = dataTable.Rows[RowNumber][18].ToString();
+            obj.MobilePhone = dataTable.Rows[RowNumber][19].ToString();
+            obj.AddressAllias = dataTable.Rows[RowNumber][20].ToString();
+
+
             if (obj.Title == "Mr")
                 TitleMrRadioBtnElement.Click();
             else if (obj.Title == "Mrs")
@@ -84,53 +113,6 @@ namespace PracticeAutomation.PagesObjects
 
         }
 
-        static public AccountCreationPageModel ReadExcelSheet()
-        {
-            int RowNumber = Helper.GetRandomNumber(0, 10);
-            AccountCreationPageModel RegData = new AccountCreationPageModel();
-            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
-
-            //open file and returns as Stream
-            var stream = File.Open(@"..\..\..\Files\TestData\RegistrationData.xlsx", FileMode.Open, FileAccess.Read);
-            using (var excelReader = ExcelReaderFactory.CreateReader(stream))
-            {
-                DataSet result = excelReader.AsDataSet(new ExcelDataSetConfiguration()
-                {
-                    ConfigureDataTable = (_) => new ExcelDataTableConfiguration()
-                    {
-                        UseHeaderRow = true
-                    }
-                });
-                DataTable dt = result.Tables[0];
-
-                int coulmnCount = result.Tables[0].Columns.Count;
-                RegData.Title = dt.Rows[RowNumber][0].ToString();
-                RegData.FirstName = dt.Rows[RowNumber][1].ToString();
-                RegData.LastName = dt.Rows[RowNumber][2].ToString();
-                RegData.Email = dt.Rows[RowNumber][3].ToString();
-                RegData.Password = dt.Rows[RowNumber][4].ToString();
-                RegData.Day = dt.Rows[RowNumber][5].ToString();
-                RegData.Month = dt.Rows[RowNumber][6].ToString();
-                RegData.Year = dt.Rows[RowNumber][7].ToString();
-                RegData.Newsletter = dt.Rows[RowNumber][8].ToString();
-                RegData.Optin = dt.Rows[RowNumber][9].ToString();
-                RegData.Company = dt.Rows[RowNumber][10].ToString();
-                RegData.Address = dt.Rows[RowNumber][11].ToString();
-                RegData.Address2 = dt.Rows[RowNumber][12].ToString();
-                RegData.City = dt.Rows[RowNumber][13].ToString();
-                RegData.State = dt.Rows[RowNumber][14].ToString();
-                RegData.PostalCode = dt.Rows[RowNumber][15].ToString();
-                RegData.Country = dt.Rows[RowNumber][16].ToString();
-                RegData.AdditionalInfo = dt.Rows[RowNumber][17].ToString();
-                RegData.HomePhone = dt.Rows[RowNumber][18].ToString();
-                RegData.MobilePhone = dt.Rows[RowNumber][19].ToString();
-                RegData.AddressAllias = dt.Rows[RowNumber][20].ToString();
-
-                excelReader.Close(); excelReader.Close();
-            }
-
-            return RegData;
-        }
         #endregion
 
     }

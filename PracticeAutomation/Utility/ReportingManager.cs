@@ -4,13 +4,14 @@ using NUnit.Framework;
 using System;
 using System.IO;
 using AventStack.ExtentReports.Reporter.Configuration;
+using RazorEngine.Compilation.ImpromptuInterface;
 
 namespace PracticeAutomation.Utility
 {
     public class ReportingManager
     {
-        static AventStack.ExtentReports.ExtentReports extentReports;
-        static ExtentTest extentTests;
+         static AventStack.ExtentReports.ExtentReports extentReports;
+         static ExtentTest extentTests;
         private static string solutionDir = Path.GetDirectoryName(Path.GetDirectoryName(TestContext.CurrentContext.TestDirectory));
         private static string reportFile = Path.Combine(solutionDir, "../", "Files", "TestReports", "ExtentReport.html");
         private static string reportPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, reportFile);
