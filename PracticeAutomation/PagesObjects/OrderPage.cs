@@ -11,7 +11,9 @@ namespace PracticeAutomation.PagesObjects
     public class OrderPage
     {
         #region Properties
-        private IWebElement ProceedToCheckoutBtnElement01 => Driver.FindElement(By.CssSelector("#center_column > p.cart_navigation.clearfix > a.button.btn.btn-default.standard-checkout.button-medium"));
+        private IList<IWebElement> ProceedToCheckoutBtnElements => Driver.FindElements(By.CssSelector("a[title = 'Proceed to checkout']"));
+
+        //  private IWebElement ProceedToCheckoutBtnElement01 => Driver.FindElement(By.CssSelector("#center_column > p.cart_navigation.clearfix > a.button.btn.btn-default.standard-checkout.button-medium"));
         private IWebElement ProceedToCheckoutBtnElement03 => Driver.FindElement(By.CssSelector("button[name='processAddress']"));
         private IWebElement ProceedToCheckoutBtnElement04 => Driver.FindElement(By.CssSelector("button[name='processCarrier']"));
         private IWebElement TermsOfserviceChkBoxElement => Driver.FindElement(By.Id("cgv"));
@@ -27,7 +29,9 @@ namespace PracticeAutomation.PagesObjects
 
         public void ProceedToCheckout()
         {
-            ProceedToCheckoutBtnElement01.Click();
+            ProceedToCheckoutBtnElements.LastOrDefault().Click();
+
+            // ProceedToCheckoutBtnElement01.Click();
             ProceedToCheckoutBtnElement03.Click();
             TermsOfserviceChkBoxElement.Click();
             ProceedToCheckoutBtnElement04.Click();
