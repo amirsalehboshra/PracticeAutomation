@@ -13,7 +13,6 @@ namespace PracticeAutomation.Utility
         {
             DataTable dataTable;
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
-            //open file and returns as Stream
             var stream = File.Open(filePath, FileMode.Open, FileAccess.Read);
             using (var excelReader = ExcelReaderFactory.CreateReader(stream))
             {

@@ -77,6 +77,5 @@ namespace Practice.Test
             ReportingManager.extentReport.Flush();
         }
 
-
     }
 }

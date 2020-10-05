@@ -6,6 +6,7 @@ using PracticeAutomation.Utility;
 
 namespace PracticeAutomation.Tests
 {
+    [Parallelizable(ParallelScope.All)]
     class Scenario1 : BaseTest
     {
 
@@ -23,12 +24,12 @@ namespace PracticeAutomation.Tests
             #region Act
             Pages.Home.ClickSignin();
             Pages.Login.EnterValidEmailAndStartCreatingAccount();
-           
+
             string Username = Pages.AccountCreation.FillRegistrationDataAndSubmit();
             MyAccountPageIsOpened = Pages.MyAccount.IsMyAccountPageOpened();
             ProperUsernameIsShownInTheHeader = Pages.MyAccount.IsProperUsernameShownInTheHeader(Username);
             LogOutActionIsAvailable = Pages.MyAccount.IsLogOutActionAvailable();
-           
+
             if (MyAccountPageIsOpened)
                 ReportingManager.extentTest.Log(Status.Pass, "MyAccountPageIsOpened");
             if (ProperUsernameIsShownInTheHeader)

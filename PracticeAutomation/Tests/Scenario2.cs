@@ -6,6 +6,7 @@ using AventStack.ExtentReports;
 
 namespace PracticeAutomation.Tests
 {
+    [Parallelizable(ParallelScope.All)]
     class Scenario2 : BaseTest
     {
         [Test]
@@ -22,7 +23,7 @@ namespace PracticeAutomation.Tests
             Pages.Login.Login();
 
             string Username = Helper.GetConfigValueByKey("Username");
-            MyAccountPageIsOpened = Pages.MyAccount.IsMyAccountPageOpened();
+            //  MyAccountPageIsOpened = Pages.MyAccount.IsMyAccountPageOpened();
             ProperUsernameIsShownInTheHeader = Pages.MyAccount.IsProperUsernameShownInTheHeader(Username);
             LogOutActionIsAvailable = Pages.MyAccount.IsLogOutActionAvailable();
 

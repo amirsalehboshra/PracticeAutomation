@@ -8,13 +8,13 @@ using System.IO;
 
 namespace PracticeAutomation.Utility
 {
-    public  class Driver
+    public class Driver
     {
         [ThreadStatic]
         private static IWebDriver _driver;
 
 
-            public static void Init()
+        public static void Init()
         {
             string browser = Helper.GetConfigValueByKey("Browser");
 
@@ -54,9 +54,11 @@ namespace PracticeAutomation.Utility
             }
 
             Current.Navigate().GoToUrl(url);
-            Logger.Log.Info("Environmrnt url: "+ url);
+            Logger.Log.Info("Environmrnt url: " + url);
 
         }
+
+
 
         public static void CaptureScreenshot(string screenshotName)
         {
@@ -66,13 +68,11 @@ namespace PracticeAutomation.Utility
             var screenshotPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, screenshotFile);
             //Save screenshot
             file.SaveAsFile(screenshotPath, ScreenshotImageFormat.Png);
-
         }
 
         public static IWebElement FindElement(By by)
         {
             return Current.FindElement(by);
-
         }
 
         public static IList<IWebElement> FindElements(By by)
@@ -84,7 +84,6 @@ namespace PracticeAutomation.Utility
         {
             element.Click();
             Logger.Log.Step("CLick: " + element.Text);
-
         }
 
     }

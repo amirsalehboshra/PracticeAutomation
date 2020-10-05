@@ -6,7 +6,8 @@ using PracticeAutomation.Utility;
 
 namespace PracticeAutomation.Tests
 {
-    class Scenario3: BaseTest
+    [Parallelizable(ParallelScope.All)]
+    class Scenario3 : BaseTest
     {
         [Test]
         public void Checkout()
@@ -30,7 +31,7 @@ namespace PracticeAutomation.Tests
             OrderConfirmationPageIsOpened = PagesObjects.Pages.Order.IsOrderConfirmationPageOpened();
             TheOrderIsComplete = PagesObjects.Pages.Order.IsTheOrderComplete();
             CurrentPageIsTheLastStepOfOrdering = PagesObjects.Pages.Order.IsCurrentPageTheLastStepOfOrdering();
-            
+
             if (OrderConfirmationPageIsOpened)
                 ReportingManager.extentTest.Log(Status.Pass, "OrderConfirmationPageIsOpened");
             if (TheOrderIsComplete)
