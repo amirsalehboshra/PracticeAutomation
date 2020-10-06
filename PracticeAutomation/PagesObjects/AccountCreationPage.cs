@@ -1,13 +1,8 @@
-﻿using ExcelDataReader;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using PracticeAutomation.PagesModels;
 using PracticeAutomation.Utility;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.IO;
-using System.Text;
-using OpenQA.Selenium.Support.UI;
 
 
 namespace PracticeAutomation.PagesObjects

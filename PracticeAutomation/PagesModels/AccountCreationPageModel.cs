@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PracticeAutomation.PagesModels
+﻿namespace PracticeAutomation.PagesModels
 {
     public class AccountCreationPageModel
     {

@@ -1,11 +1,7 @@
-﻿
-using NUnit.Framework;
-using PracticeAutomation.PagesObjects;
-using System;
-using System.IO;
-using PracticeAutomation.Utility;
-using AventStack.ExtentReports;
+﻿using NUnit.Framework;
 using NUnit.Framework.Interfaces;
+using PracticeAutomation.PagesObjects;
+using PracticeAutomation.Utility;
 
 namespace Practice.Test
 {
@@ -15,7 +11,7 @@ namespace Practice.Test
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-             ReportingManager.GetReportInstance();
+            ReportingManager.GetReportInstance();
         }
 
         [SetUp]
@@ -45,18 +41,18 @@ namespace Practice.Test
                 Logger.Log.Error(errorMessage);
                 Logger.Log.Error(stackTrace);
 
-                ReportingManager.extentTest.Log(Status.Fail, status + errorMessage);
+                ReportingManager.extentTest.Fail( status + errorMessage);
                 //To take screenshot
                 Driver.CaptureScreenshot(TestContext.CurrentContext.Test.FullName);
                 //Log screenshot
-                ReportingManager.extentTest.Log(Status.Debug, "Snapshot below: " + ReportingManager.extentTest.AddScreenCaptureFromPath(Helper.GetScreenshotPath()));
+                ReportingManager.extentTest.Debug( "Snapshot below: " + ReportingManager.extentTest.AddScreenCaptureFromPath(Helper.GetScreenshotPath()));
             }
             else if (status == TestStatus.Passed)
-                ReportingManager.extentTest.Log(Status.Pass, "Test Passed");
+                ReportingManager.extentTest.Pass( "Test Passed");
             else if (status == TestStatus.Warning)
-                ReportingManager.extentTest.Log(Status.Warning, "Warning");
+                ReportingManager.extentTest.Warning( "Warning");
             else if (status == TestStatus.Skipped)
-                ReportingManager.extentTest.Log(Status.Skip, "Skipped");
+                ReportingManager.extentTest.Skip( "Skipped");
             //End test report
 
 

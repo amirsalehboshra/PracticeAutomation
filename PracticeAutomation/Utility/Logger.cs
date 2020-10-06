@@ -65,7 +65,7 @@ namespace PracticeAutomation.Utility
         {
             using (var log = File.AppendText(_filepath))
             {
-                log.WriteLine(text+ "  "+ DateTime.Now.ToString());
+                log.WriteLine(text + "  " + DateTime.Now.ToString());
             }
         }
         private void WriteLine(string text)

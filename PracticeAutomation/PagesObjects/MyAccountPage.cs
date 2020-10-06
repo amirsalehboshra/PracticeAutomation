@@ -1,11 +1,5 @@
-﻿using AventStack.ExtentReports;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
+﻿using OpenQA.Selenium;
 using PracticeAutomation.Utility;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Text;
 
 
 
@@ -48,7 +42,7 @@ namespace PracticeAutomation.PagesObjects
             bool _enabled = LogoutLnkElement.Enabled;
             bool _displayed = LogoutLnkElement.Displayed;
 
-            if (_enabled == true && _displayed== true)
+            if (_enabled == true && _displayed == true)
             {
                 return true;
             }

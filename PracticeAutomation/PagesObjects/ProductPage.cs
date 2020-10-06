@@ -1,8 +1,5 @@
 ﻿using OpenQA.Selenium;
 using PracticeAutomation.Utility;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PracticeAutomation.PagesObjects
 {

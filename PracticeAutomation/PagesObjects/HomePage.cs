@@ -1,10 +1,5 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using PracticeAutomation.Utility;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
 
 namespace PracticeAutomation.PagesObjects
 {

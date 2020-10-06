@@ -1,8 +1,8 @@
-﻿using NUnit.Framework;
+﻿using AventStack.ExtentReports;
+using NUnit.Framework;
 using Practice.Test;
 using PracticeAutomation.PagesObjects;
 using PracticeAutomation.Utility;
-using AventStack.ExtentReports;
 
 namespace PracticeAutomation.Tests
 {
