@@ -5,7 +5,7 @@ namespace PracticeAutomation.PagesObjects
 {
     public class ProductPage
     {
-        #region Properties
+        #region Elements
         private IWebElement AddToCartBtnElement => Driver.FindElement(By.CssSelector("button[name='Submit']"));
         private IWebElement ProceedToCheckoutBtnElement => Driver.FindElement(By.CssSelector("a[title='Proceed to checkout']"));
         #endregion

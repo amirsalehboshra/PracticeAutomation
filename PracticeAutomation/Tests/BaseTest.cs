@@ -7,7 +7,6 @@ namespace Practice.Test
 {
     public abstract class BaseTest
     {
-
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
@@ -26,7 +25,6 @@ namespace Practice.Test
 
             ReportingManager.CreateTestInstance();
         }
-
 
         [TearDown]
         public void TearDown()

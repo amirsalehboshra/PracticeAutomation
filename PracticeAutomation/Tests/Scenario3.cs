@@ -1,5 +1,4 @@
-﻿using AventStack.ExtentReports;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Practice.Test;
 using PracticeAutomation.PagesObjects;
 using PracticeAutomation.Utility;
@@ -33,11 +32,11 @@ namespace PracticeAutomation.Tests
             CurrentPageIsTheLastStepOfOrdering = PagesObjects.Pages.Order.IsCurrentPageTheLastStepOfOrdering();
 
             if (OrderConfirmationPageIsOpened)
-                ReportingManager.extentTest.Log(Status.Pass, "OrderConfirmationPageIsOpened");
+                ReportingManager.extentTest.Pass("OrderConfirmationPageIsOpened");
             if (TheOrderIsComplete)
-                ReportingManager.extentTest.Log(Status.Pass, "TheOrderIsComplete");
+                ReportingManager.extentTest.Pass("TheOrderIsComplete");
             if (CurrentPageIsTheLastStepOfOrdering)
-                ReportingManager.extentTest.Log(Status.Pass, "CurrentPageIsTheLastStepOfOrdering");
+                ReportingManager.extentTest.Pass("CurrentPageIsTheLastStepOfOrdering");
             #endregion
 
             #region Assert
@@ -49,6 +48,5 @@ namespace PracticeAutomation.Tests
             });
             #endregion
         }
-
     }
 }

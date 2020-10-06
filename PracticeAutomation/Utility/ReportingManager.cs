@@ -13,6 +13,10 @@ namespace PracticeAutomation.Utility
         [ThreadStatic]
         static ExtentTest extentTests;
 
+        public static ExtentTest extentTest => extentTests ?? throw new NullReferenceException("extentTest is null.");
+        public static AventStack.ExtentReports.ExtentReports extentReport => extentReports ?? throw new NullReferenceException("extentTest is null.");
+
+
         private static string solutionDir = Path.GetDirectoryName(Path.GetDirectoryName(TestContext.CurrentContext.TestDirectory));
         private static string reportFile = Path.Combine(solutionDir, "../", "Files", "TestReports", "ExtentReport.html");
         private static string reportPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, reportFile);
@@ -28,7 +32,6 @@ namespace PracticeAutomation.Utility
                 CreateReportInstance();
             return extentReports;
         }
-
         public static AventStack.ExtentReports.ExtentReports CreateReportInstance()
         {
             var htmlReporter = new ExtentV3HtmlReporter(reportPath);
@@ -50,7 +53,6 @@ namespace PracticeAutomation.Utility
                 CreateTestInstance();
             return extentTests;
         }
-
         public static ExtentTest CreateTestInstance()
         {
             extentTests = extentReports.CreateTest(TestContext.CurrentContext.Test.Name, TestContext.CurrentContext.Test.FullName);
@@ -58,8 +60,6 @@ namespace PracticeAutomation.Utility
         }
 
 
-        public static ExtentTest extentTest => extentTests ?? throw new NullReferenceException("extentTest is null.");
-        public static AventStack.ExtentReports.ExtentReports extentReport => extentReports ?? throw new NullReferenceException("extentTest is null.");
 
     }
 }

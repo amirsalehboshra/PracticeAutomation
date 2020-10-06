@@ -9,7 +9,7 @@ namespace PracticeAutomation.PagesObjects
 {
     public class AccountCreationPage
     {
-        #region Properties
+        #region Elements
         private IWebElement TitleMrRadioBtnElement => Driver.FindElement(By.CssSelector("label[for='id_gender1']"));
         private IWebElement TitleMrsRadioBtnElement => Driver.FindElement(By.CssSelector("label[for='id_gender2']"));
         private IWebElement FirstNameTxtBoxElement => Driver.FindElement(By.Id("customer_firstname"));
@@ -105,9 +105,7 @@ namespace PracticeAutomation.PagesObjects
             RegisterBtnElement.Click();
 
             return obj.FirstName + " " + obj.LastName;
-
         }
-
         #endregion
 
     }

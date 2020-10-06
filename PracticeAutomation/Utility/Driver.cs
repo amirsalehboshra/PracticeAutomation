@@ -13,6 +13,7 @@ namespace PracticeAutomation.Utility
         [ThreadStatic]
         private static IWebDriver _driver;
 
+        public static IWebDriver Current => _driver ?? throw new NullReferenceException("_driver is null.");
 
         public static void Init()
         {
@@ -44,8 +45,7 @@ namespace PracticeAutomation.Utility
 
         }
 
-        public static IWebDriver Current => _driver ?? throw new NullReferenceException("_driver is null.");
-
+        #region Methods
         public static void Goto(string url)
         {
             if (!url.StartsWith("http"))
@@ -56,18 +56,6 @@ namespace PracticeAutomation.Utility
             Current.Navigate().GoToUrl(url);
             Logger.Log.Info("Environmrnt url: " + url);
 
-        }
-
-
-
-        public static void CaptureScreenshot(string screenshotName)
-        {
-            Screenshot file = ((ITakesScreenshot)Driver.Current).GetScreenshot();
-            var solutionDir = Path.GetDirectoryName(Path.GetDirectoryName(TestContext.CurrentContext.TestDirectory));
-            var screenshotFile = Path.Combine(solutionDir, "../", "Files", "Screenshots", screenshotName + ".png");
-            var screenshotPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, screenshotFile);
-            //Save screenshot
-            file.SaveAsFile(screenshotPath, ScreenshotImageFormat.Png);
         }
 
         public static IWebElement FindElement(By by)
@@ -86,5 +74,15 @@ namespace PracticeAutomation.Utility
             Logger.Log.Step("CLick: " + element.Text);
         }
 
+        public static void CaptureScreenshot(string screenshotName)
+        {
+            Screenshot file = ((ITakesScreenshot)Driver.Current).GetScreenshot();
+            var solutionDir = Path.GetDirectoryName(Path.GetDirectoryName(TestContext.CurrentContext.TestDirectory));
+            var screenshotFile = Path.Combine(solutionDir, "../", "Files", "Screenshots", screenshotName + ".png");
+            var screenshotPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, screenshotFile);
+            //Save screenshot
+            file.SaveAsFile(screenshotPath, ScreenshotImageFormat.Png);
+        }
+        #endregion
     }
 }

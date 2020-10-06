@@ -7,7 +7,7 @@ namespace PracticeAutomation.PagesObjects
 {
     public class OrderPage
     {
-        #region Properties
+        #region Elements
         private IList<IWebElement> ProceedToCheckoutBtnElements => Driver.FindElements(By.CssSelector("a[title = 'Proceed to checkout']"));
 
         //  private IWebElement ProceedToCheckoutBtnElement01 => Driver.FindElement(By.CssSelector("#center_column > p.cart_navigation.clearfix > a.button.btn.btn-default.standard-checkout.button-medium"));
@@ -21,19 +21,16 @@ namespace PracticeAutomation.PagesObjects
         private IWebElement CartProductsCountElement => Driver.FindElement(By.XPath("//header[@id='header']/div[3]/div/div/div[3]/div/a/span[5]"));
         #endregion
 
-
         #region Methods
 
         public void ProceedToCheckout()
         {
             ProceedToCheckoutBtnElements.LastOrDefault().Click();
-
             // ProceedToCheckoutBtnElement01.Click();
             ProceedToCheckoutBtnElement03.Click();
             TermsOfserviceChkBoxElement.Click();
             ProceedToCheckoutBtnElement04.Click();
             Logger.Log.Step(Helper.GetCurrentMethod());
-
         }
 
         public void ConfirmOrder()
@@ -41,7 +38,6 @@ namespace PracticeAutomation.PagesObjects
             PayByBankWireLnkElement.Click();
             ConfirmOrderBtnElement.Click();
             Logger.Log.Step(Helper.GetCurrentMethod());
-
         }
 
         public bool IsTheOrderComplete()

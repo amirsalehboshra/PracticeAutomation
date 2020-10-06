@@ -8,7 +8,7 @@ namespace PracticeAutomation.PagesObjects
 {
     public class MyAccountPage
     {
-        #region Properties
+        #region Elements
         private IWebElement HeaderUsernameLnkElement => Driver.FindElement(By.XPath("//a[contains(@title, 'View my customer account')]/span"));
         private IWebElement LogoutLnkElement => Driver.FindElement(By.XPath("//a[contains(@title, 'View my customer account')]/span"));
 

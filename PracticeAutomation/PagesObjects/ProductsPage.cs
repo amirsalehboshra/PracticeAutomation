@@ -5,7 +5,7 @@ namespace PracticeAutomation.PagesObjects
 {
     public class ProductsPage
     {
-        #region Properties
+        #region Elements
 
 
         #endregion

@@ -5,7 +5,7 @@ namespace PracticeAutomation.PagesObjects
 {
     public class loginPage
     {
-        #region Properties
+        #region Elements
         private IWebElement EmailCreateTxtBoxElement => Driver.FindElement(By.Id("email_create"));
         private IWebElement CreateAccountBtnElement => Driver.FindElement(By.Id("SubmitCreate"));
         private IWebElement EmailTxtBoxElement => Driver.FindElement(By.Id("email"));
@@ -21,8 +21,6 @@ namespace PracticeAutomation.PagesObjects
             EmailCreateTxtBoxElement.SendKeys(Helper.GetRandomMail());
             CreateAccountBtnElement.Click();
             Logger.Log.Step(Helper.GetCurrentMethod());
-
-
         }
 
         public void Login()
@@ -34,7 +32,6 @@ namespace PracticeAutomation.PagesObjects
             PasswordTxtBoxElement.SendKeys(password);
             LoginBtnElement.Click();
             Logger.Log.Step(Helper.GetCurrentMethod());
-
         }
         #endregion
     }

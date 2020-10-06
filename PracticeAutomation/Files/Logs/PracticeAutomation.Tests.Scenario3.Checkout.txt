@@ -1,14 +1,14 @@
-Starting timestamp: 10/6/2020 10:51:07 AM
+Starting timestamp: 10/6/2020 3:59:49 PM
 Test: PracticeAutomation.Tests.Scenario3.Checkout
 [INFO]: browser: Chrome
 [INFO]: Environmrnt url: http://automationpractice.com/
-    [STEP]: ClickSignin  10/6/2020 10:51:20 AM
-    [STEP]: Login  10/6/2020 10:51:24 AM
-    [STEP]: SelectWomenCategory  10/6/2020 10:51:28 AM
-    [STEP]: SelectProduct Faded Short Sleeve T-shirts  10/6/2020 10:51:31 AM
-    [STEP]: AddToCart  10/6/2020 10:51:31 AM
-    [STEP]: ProceedToCheckout  10/6/2020 10:51:33 AM
-    [STEP]: ProceedToCheckout  10/6/2020 10:51:38 AM
-    [STEP]: ConfirmOrder  10/6/2020 10:51:42 AM
+    [STEP]: ClickSignin  10/6/2020 4:00:05 PM
+    [STEP]: Login  10/6/2020 4:00:09 PM
+    [STEP]: SelectWomenCategory  10/6/2020 4:00:12 PM
+    [STEP]: SelectProduct Faded Short Sleeve T-shirts  10/6/2020 4:00:15 PM
+    [STEP]: AddToCart  10/6/2020 4:00:15 PM
+    [STEP]: ProceedToCheckout  10/6/2020 4:00:17 PM
+    [STEP]: ProceedToCheckout  10/6/2020 4:00:23 PM
+    [STEP]: ConfirmOrder  10/6/2020 4:00:27 PM
 [INFO]: Passed
 [INFO]: Browser closed

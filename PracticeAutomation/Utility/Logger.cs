@@ -6,14 +6,10 @@ namespace PracticeAutomation.Utility
 {
     public class Logger
     {
-
-        public static Logger Log => _logger ?? throw new NullReferenceException("_logger is null. SetLogger() first.");
-
-
         [ThreadStatic]
         private static Logger _logger;
-
-
+        public static Logger Log => _logger ?? throw new NullReferenceException("_logger is null. SetLogger() first.");
+     
         public static void SetLogger()
         {
             lock (_setLoggerLock)
@@ -27,12 +23,8 @@ namespace PracticeAutomation.Utility
                 _logger = new Logger(testName, logsPath + "/" + testName + ".txt");
             }
         }
-
         private static object _setLoggerLock = new object();
-
-
         private readonly string _filepath;
-
         public Logger(string testName, string filepath)
         {
             _filepath = filepath;
@@ -44,23 +36,19 @@ namespace PracticeAutomation.Utility
             }
         }
 
+
         public void Info(string message)
         {
             WriteLine($"[INFO]: {message}");
         }
-
         public void Step(string message)
         {
             WriteLineWithTime($"    [STEP]: {message}");
         }
-
-
         public void Error(string message)
         {
             WriteLine($"[ERROR]: {message}");
         }
-
-
         private void WriteLineWithTime(string text)
         {
             using (var log = File.AppendText(_filepath))
@@ -75,7 +63,6 @@ namespace PracticeAutomation.Utility
                 log.WriteLine(text);
             }
         }
-
 
     }
 

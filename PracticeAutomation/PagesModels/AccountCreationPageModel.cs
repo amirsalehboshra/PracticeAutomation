@@ -24,9 +24,5 @@
         public string MobilePhone { get; set; }
         public string AddressAllias { get; set; }
 
-
-
-
-
     }
 }
