@@ -21,7 +21,7 @@ namespace PracticeAutomation.Tests
             Pages.Home.ClickSignin();
             Pages.Login.Login();
             Pages.Menu.SelectWomenCategory();
-            Pages.Products.SelectProduct(Helper.GetConfigValueByKey("Product"));
+            Pages.Products.SelectProduct(Helper.GetConfigValueByKey("ProductNameConfig", "Product"));
             Pages.Product.AddToCart();
             Pages.Product.ProceedToCheckout();
             Pages.Order.ProceedToCheckout();

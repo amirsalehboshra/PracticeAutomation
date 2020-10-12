@@ -17,7 +17,7 @@ namespace PracticeAutomation.Utility
 
         public static void Init()
         {
-            string browser = Helper.GetConfigValueByKey("Browser");
+            string browser = Configure.Config.Driver.Browser;
 
             Logger.Log.Info("browser: " + browser);
 
@@ -76,12 +76,9 @@ namespace PracticeAutomation.Utility
 
         public static void CaptureScreenshot(string screenshotName)
         {
-            Screenshot file = ((ITakesScreenshot)Driver.Current).GetScreenshot();
-            var solutionDir = Path.GetDirectoryName(Path.GetDirectoryName(TestContext.CurrentContext.TestDirectory));
-            var screenshotFile = Path.Combine(solutionDir, "../", "Files", "Screenshots", screenshotName + ".png");
-            var screenshotPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, screenshotFile);
-            //Save screenshot
-            file.SaveAsFile(screenshotPath, ScreenshotImageFormat.Png);
+            Screenshot screenshotFile = ((ITakesScreenshot)Driver.Current).GetScreenshot();
+            var screenshotPath = Path.Combine(Helper.WORKSPACE_DIRECTORY, "Files", "Screenshots", screenshotName + ".png");
+            screenshotFile.SaveAsFile(screenshotPath, ScreenshotImageFormat.Png);
         }
         #endregion
     }

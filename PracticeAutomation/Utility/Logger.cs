@@ -16,9 +16,7 @@ namespace PracticeAutomation.Utility
             {
                 var testName = TestContext.CurrentContext.Test.FullName;
 
-                var testResultsDir = Path.GetDirectoryName(Path.GetDirectoryName(TestContext.CurrentContext.TestDirectory));
-                var LogsFile = Path.Combine(testResultsDir, "../", "Files", "Logs");
-                var logsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, LogsFile);
+                var logsPath = Path.Combine(Helper.WORKSPACE_DIRECTORY , "Files", "Logs");
 
                 _logger = new Logger(testName, logsPath + "/" + testName + ".txt");
             }

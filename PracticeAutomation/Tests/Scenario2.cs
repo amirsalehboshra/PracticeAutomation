@@ -21,7 +21,7 @@ namespace PracticeAutomation.Tests
             Pages.Home.ClickSignin();
             Pages.Login.Login();
 
-            string Username = Helper.GetConfigValueByKey("Username");
+            string Username = Helper.GetConfigValueByKey("LoginConfig", "Username");
             //  MyAccountPageIsOpened = Pages.MyAccount.IsMyAccountPageOpened();
             ProperUsernameIsShownInTheHeader = Pages.MyAccount.IsProperUsernameShownInTheHeader(Username);
             LogOutActionIsAvailable = Pages.MyAccount.IsLogOutActionAvailable();

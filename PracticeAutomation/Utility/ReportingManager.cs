@@ -17,9 +17,7 @@ namespace PracticeAutomation.Utility
         public static AventStack.ExtentReports.ExtentReports extentReport => extentReports ?? throw new NullReferenceException("extentTest is null.");
 
 
-        private static string solutionDir = Path.GetDirectoryName(Path.GetDirectoryName(TestContext.CurrentContext.TestDirectory));
-        private static string reportFile = Path.Combine(solutionDir, "../", "Files", "TestReports", "ExtentReport.html");
-        private static string reportPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, reportFile);
+        private static string reportPath = Path.Combine(Helper.WORKSPACE_DIRECTORY, "Files", "TestReports", "ExtentReport.html");
 
         private ReportingManager()
         {

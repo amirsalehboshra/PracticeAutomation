@@ -16,11 +16,12 @@ namespace Practice.Test
         [SetUp]
         public void SetUp()
         {
+            Configure.SetConfig();
             Logger.SetLogger();
             Driver.Init();
             Pages.Init();
 
-            string URL = Helper.GetConfigValueByKey("URL");
+            string URL = Configure.Config.Environment.Url;
             Driver.Goto(URL);
 
             ReportingManager.CreateTestInstance();

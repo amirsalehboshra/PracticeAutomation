@@ -8,10 +8,12 @@ namespace PracticeAutomation.Utility
 {
     static public class Helper
     {
-        public static string GetConfigValueByKey(string key)
+        public static string WORKSPACE_DIRECTORY = Path.GetFullPath(@"../../../");
+
+        public static string GetConfigValueByKey(string section, string key)
         {
             IConfiguration configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json", true, true).Build();
-            var value = configuration.GetSection("ConfigurationVariables").GetSection(key).Value;
+            var value = configuration.GetSection(section).GetSection(key).Value;
             return value;
         }
         public static int GetRandomNumber(int Min, int Max)
@@ -40,9 +42,7 @@ namespace PracticeAutomation.Utility
         }
         public static string GetScreenshotPath()
         {
-            var solutionDir = Path.GetDirectoryName(Path.GetDirectoryName(TestContext.CurrentContext.TestDirectory));
-            var screenshotFile = Path.Combine(solutionDir, "../", "Files", "Screenshots", TestContext.CurrentContext.Test.FullName + ".png");
-            var screenshotPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, screenshotFile);
+            var screenshotPath = Path.Combine(WORKSPACE_DIRECTORY, "Files", "Screenshots", TestContext.CurrentContext.Test.FullName + ".png");
             return screenshotPath;
         }
     }

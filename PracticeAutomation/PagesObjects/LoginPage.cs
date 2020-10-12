@@ -25,8 +25,8 @@ namespace PracticeAutomation.PagesObjects
 
         public void Login()
         {
-            string email = Helper.GetConfigValueByKey("Email");
-            string password = Helper.GetConfigValueByKey("Password");
+            string email = Helper.GetConfigValueByKey("LoginConfig", "Email");
+            string password = Helper.GetConfigValueByKey("LoginConfig", "Password");
 
             EmailTxtBoxElement.SendKeys(email);
             PasswordTxtBoxElement.SendKeys(password);

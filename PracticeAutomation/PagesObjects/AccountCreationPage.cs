@@ -3,7 +3,7 @@ using OpenQA.Selenium.Support.UI;
 using PracticeAutomation.PagesModels;
 using PracticeAutomation.Utility;
 using System.Data;
-
+using System.IO;
 
 namespace PracticeAutomation.PagesObjects
 {
@@ -41,7 +41,8 @@ namespace PracticeAutomation.PagesObjects
         {
             int RowNumber = Helper.GetRandomNumber(0, 10);
 
-            string filePath = @"..\..\..\Files\TestData\RegistrationData.xlsx";
+            var filePath = Path.Combine(Helper.WORKSPACE_DIRECTORY, "Files", "TestData", "RegistrationData.xlsx");
+
             ExcelReader excelReader = new ExcelReader();
             DataTable dataTable = excelReader.ReadExcelSheet(filePath);
 
