@@ -1,13 +1,8 @@
-﻿using MongoDB.Bson.IO;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
-using System.Text;
 
 namespace PracticeAutomation.Utility
 {
-
     public class Configure
 
     {
@@ -24,20 +19,19 @@ namespace PracticeAutomation.Utility
             }
         }
 
-
     }
 
     public class Configurations
     {
         public DriverSettings Driver { get; set; }
         public EnvironmentSettings Environment { get; set; }
-
     }
+
+
     public class DriverSettings
     {
         public string Browser { get; set; }
     }
-
     public class EnvironmentSettings
     {
         public string Url { get; set; }

@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using System;
@@ -77,7 +76,7 @@ namespace PracticeAutomation.Utility
         public static void CaptureScreenshot(string screenshotName)
         {
             Screenshot screenshotFile = ((ITakesScreenshot)Driver.Current).GetScreenshot();
-            var screenshotPath = Path.Combine(Helper.WORKSPACE_DIRECTORY, "Files", "Screenshots", screenshotName + ".png");
+            var screenshotPath = Path.Combine(Helper.ScreenshotPath, Helper.GetDateTimeVariable() + screenshotName + ".png");
             screenshotFile.SaveAsFile(screenshotPath, ScreenshotImageFormat.Png);
         }
         #endregion

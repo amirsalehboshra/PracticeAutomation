@@ -32,11 +32,11 @@ namespace PracticeAutomation.Tests
             CurrentPageIsTheLastStepOfOrdering = PagesObjects.Pages.Order.IsCurrentPageTheLastStepOfOrdering();
 
             if (OrderConfirmationPageIsOpened)
-                ReportingManager.extentTest.Pass("OrderConfirmationPageIsOpened");
+                ReportingManager.ExtentTest.Pass("OrderConfirmationPageIsOpened");
             if (TheOrderIsComplete)
-                ReportingManager.extentTest.Pass("TheOrderIsComplete");
+                ReportingManager.ExtentTest.Pass("TheOrderIsComplete");
             if (CurrentPageIsTheLastStepOfOrdering)
-                ReportingManager.extentTest.Pass("CurrentPageIsTheLastStepOfOrdering");
+                ReportingManager.ExtentTest.Pass("CurrentPageIsTheLastStepOfOrdering");
             #endregion
 
             #region Assert

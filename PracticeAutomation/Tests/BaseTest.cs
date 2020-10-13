@@ -2,6 +2,7 @@
 using NUnit.Framework.Interfaces;
 using PracticeAutomation.PagesObjects;
 using PracticeAutomation.Utility;
+using System.IO;
 
 namespace Practice.Test
 {
@@ -10,6 +11,7 @@ namespace Practice.Test
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
+            Helper.IntitializeDateTimeVariable();
             ReportingManager.GetReportInstance();
         }
 
@@ -40,18 +42,20 @@ namespace Practice.Test
                 Logger.Log.Error(errorMessage);
                 Logger.Log.Error(stackTrace);
 
-                ReportingManager.extentTest.Fail( status + errorMessage);
+                ReportingManager.ExtentTest.Fail(status + errorMessage);
                 //To take screenshot
                 Driver.CaptureScreenshot(TestContext.CurrentContext.Test.FullName);
                 //Log screenshot
-                ReportingManager.extentTest.Debug( "Snapshot below: " + ReportingManager.extentTest.AddScreenCaptureFromPath(Helper.GetScreenshotPath()));
+                var screenshotPath = Path.Combine(Helper.ScreenshotPath, Helper.GetDateTimeVariable() + TestContext.CurrentContext.Test.FullName + ".png");
+
+                ReportingManager.ExtentTest.Debug("Snapshot below: " + ReportingManager.ExtentTest.AddScreenCaptureFromPath(screenshotPath));
             }
             else if (status == TestStatus.Passed)
-                ReportingManager.extentTest.Pass( "Test Passed");
+                ReportingManager.ExtentTest.Pass("Test Passed");
             else if (status == TestStatus.Warning)
-                ReportingManager.extentTest.Warning( "Warning");
+                ReportingManager.ExtentTest.Warning("Warning");
             else if (status == TestStatus.Skipped)
-                ReportingManager.extentTest.Skip( "Skipped");
+                ReportingManager.ExtentTest.Skip("Skipped");
             //End test report
 
 
@@ -69,7 +73,7 @@ namespace Practice.Test
         public void OneTimeTearDown()
         {
             //End Report
-            ReportingManager.extentReport.Flush();
+            ReportingManager.ExtentReport.Flush();
         }
 
     }

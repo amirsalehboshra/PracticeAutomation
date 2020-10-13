@@ -3,21 +3,17 @@ using AventStack.ExtentReports.Reporter;
 using AventStack.ExtentReports.Reporter.Configuration;
 using NUnit.Framework;
 using System;
-using System.IO;
 
 namespace PracticeAutomation.Utility
 {
     public class ReportingManager
     {
-        static AventStack.ExtentReports.ExtentReports extentReports;
+        private static AventStack.ExtentReports.ExtentReports _extentReports;
         [ThreadStatic]
-        static ExtentTest extentTests;
+        private static ExtentTest _extentTests;
 
-        public static ExtentTest extentTest => extentTests ?? throw new NullReferenceException("extentTest is null.");
-        public static AventStack.ExtentReports.ExtentReports extentReport => extentReports ?? throw new NullReferenceException("extentTest is null.");
-
-
-        private static string reportPath = Path.Combine(Helper.WORKSPACE_DIRECTORY, "Files", "TestReports", "ExtentReport.html");
+        public static ExtentTest ExtentTest => _extentTests ?? throw new NullReferenceException("_extentTest is null.");
+        public static AventStack.ExtentReports.ExtentReports ExtentReport => _extentReports ?? throw new NullReferenceException("_extentTest is null.");
 
         private ReportingManager()
         {
@@ -26,13 +22,13 @@ namespace PracticeAutomation.Utility
 
         public static AventStack.ExtentReports.ExtentReports GetReportInstance()
         {
-            if (extentReports == null)
+            if (_extentReports == null)
                 CreateReportInstance();
-            return extentReports;
+            return _extentReports;
         }
         public static AventStack.ExtentReports.ExtentReports CreateReportInstance()
         {
-            var htmlReporter = new ExtentV3HtmlReporter(reportPath);
+            var htmlReporter = new ExtentV3HtmlReporter(Helper.ReportPath);
             htmlReporter.Config.CSS = "css-string";
             htmlReporter.Config.DocumentTitle = "Practice Automation Report";
             htmlReporter.Config.EnableTimeline = true;
@@ -40,21 +36,21 @@ namespace PracticeAutomation.Utility
             //htmlReporter.Config.JS = "js-string";
             htmlReporter.Config.ReportName = "Practice Automation Report";
             htmlReporter.Config.Theme = Theme.Standard;
-            extentReports = new AventStack.ExtentReports.ExtentReports();
-            extentReports.AttachReporter(htmlReporter);
+            _extentReports = new AventStack.ExtentReports.ExtentReports();
+            _extentReports.AttachReporter(htmlReporter);
 
-            return extentReports;
+            return _extentReports;
         }
         public static ExtentTest GetTestInstance()
         {
-            if (extentTests == null)
+            if (_extentTests == null)
                 CreateTestInstance();
-            return extentTests;
+            return _extentTests;
         }
         public static ExtentTest CreateTestInstance()
         {
-            extentTests = extentReports.CreateTest(TestContext.CurrentContext.Test.Name, TestContext.CurrentContext.Test.FullName);
-            return extentTests;
+            _extentTests = _extentReports.CreateTest(TestContext.CurrentContext.Test.Name, TestContext.CurrentContext.Test.FullName);
+            return _extentTests;
         }
 
 

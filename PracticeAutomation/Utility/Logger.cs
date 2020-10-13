@@ -9,16 +9,14 @@ namespace PracticeAutomation.Utility
         [ThreadStatic]
         private static Logger _logger;
         public static Logger Log => _logger ?? throw new NullReferenceException("_logger is null. SetLogger() first.");
-     
+
         public static void SetLogger()
         {
             lock (_setLoggerLock)
             {
                 var testName = TestContext.CurrentContext.Test.FullName;
-
-                var logsPath = Path.Combine(Helper.WORKSPACE_DIRECTORY , "Files", "Logs");
-
-                _logger = new Logger(testName, logsPath + "/" + testName + ".txt");
+                var logsPath = Path.Combine(Helper.LogsPath, Helper.GetDateTimeVariable() + testName + ".txt");
+                _logger = new Logger(testName, logsPath);
             }
         }
         private static object _setLoggerLock = new object();

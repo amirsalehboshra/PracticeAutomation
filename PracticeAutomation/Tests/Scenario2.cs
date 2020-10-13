@@ -27,11 +27,11 @@ namespace PracticeAutomation.Tests
             LogOutActionIsAvailable = Pages.MyAccount.IsLogOutActionAvailable();
 
             if (MyAccountPageIsOpened)
-                ReportingManager.extentTest.Pass("MyAccountPageIsOpened");
+                ReportingManager.ExtentTest.Pass("MyAccountPageIsOpened");
             if (ProperUsernameIsShownInTheHeader)
-                ReportingManager.extentTest.Pass("ProperUsernameIsShownInTheHeader");
+                ReportingManager.ExtentTest.Pass("ProperUsernameIsShownInTheHeader");
             if (LogOutActionIsAvailable)
-                ReportingManager.extentTest.Pass("LogOutActionIsAvailable");
+                ReportingManager.ExtentTest.Pass("LogOutActionIsAvailable");
             #endregion
 
             #region Assert
